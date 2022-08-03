@@ -1,3 +1,4 @@
+
 #contact_modal {
     display: none;
 }
@@ -6,6 +7,34 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+
+.photograph-header img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    -o-object-fit:cover;
+       object-fit:cover
+}
+
+.descriptionUser h2{
+    color: #D3573C;
+    font-size: 36px;
+    margin: 0;
+}
+
+.descriptionUser h3{
+    color: #B74B34;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0 5px 0;
+}
+
+.photograph-header p{
+    font-size: 12px;
 }
 
 .contact_button {

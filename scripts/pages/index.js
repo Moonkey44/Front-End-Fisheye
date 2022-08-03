@@ -3,7 +3,7 @@
         const photographersData = await fetch(newRequest)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                //console.log(data);
                 return data.photographers
             })
             .catch(console.error);        
@@ -16,7 +16,6 @@
 
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
-            console.log(photographerModel);
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
         });
@@ -29,4 +28,3 @@
     };
     
     init();
-    
