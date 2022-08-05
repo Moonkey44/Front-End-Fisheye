@@ -1,14 +1,18 @@
-    async function getPhotographers() {
+    async function getPhotographersOrMedia(choice) {
         const newRequest = new Request("../../data/photographers.json");
-        const photographersData = await fetch(newRequest)
+        const data = await fetch(newRequest)
             .then((response) => response.json())
             .then((data) => {
                 //console.log(data);
-                return data.photographers
+                if(choice === "photographers"){
+                    return data.photographers
+                }
+                else if(choice === "media"){
+                    return data.media
+                }
             })
             .catch(console.error);        
-        // et bien retourner le tableau photographers seulement une fois
-        return (photographersData)
+        return (data)
     }
 
     async function displayData(photographers) {
@@ -17,14 +21,17 @@
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
+            if(photographersSection != null){
+                photographersSection.appendChild(userCardDOM);
+            }    
         });
     };
 
     async function init() {
         // Récupère les datas des photographes
-        const photographers = await getPhotographers();
+        const photographers = await getPhotographersOrMedia("photographers").catch(console.error);
         displayData(photographers);
     };
     
     init();
+    export { getPhotographersOrMedia };

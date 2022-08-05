@@ -30,7 +30,7 @@
     color: #B74B34;
     font-size: 14px;
     font-weight: bold;
-    margin: 5px 0 5px 0;
+    margin: 20px 0 20px 0;
 }
 
 .photograph-header p{
@@ -48,6 +48,10 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.sort{
+    margin: 0 100px;
 }
 
 .modal {

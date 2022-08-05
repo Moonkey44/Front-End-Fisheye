@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -17,8 +17,19 @@
       <section class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </section>
+      <section class="sort">
+        <label for="sort-select" class="sort-label">Trier par</label>
+        <select name="sort" id="sort-select" class="sort-select">
+          <option value="popularity" selected>Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+      </section>
+      <section class="pictures">
+      </section>
+      </section>
     </main>
-    <div id="contact_modal">
+    <section id="contact_modal">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
@@ -32,10 +43,10 @@
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
-		</div>
+		</section>
+    <script src="scripts/factories/media.js"></script>
     <script src="scripts/factories/photographer.js"></script>
-    <script src="scripts/pages/index.js"></script>
-    <script src="/scripts/pages/photographer.js"></script>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

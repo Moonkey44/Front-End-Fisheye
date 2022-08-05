@@ -37,13 +37,16 @@ function photographerFactory(data) {
     }
 
     function getUserHeader(){
+        const photographerSection = document.querySelector(".photograph-header");
+        const buttonModal = document.querySelector('button');
         const divPhotographerDescription = document.createElement("div");
+        divPhotographerDescription.classList.add("descriptionUser");
         divPhotographerDescription.appendChild(nameUser);
         divPhotographerDescription.appendChild(localisationUser);
         divPhotographerDescription.appendChild(descriptionUser);
-        descriptionUser.classList.add("description");
-        return divPhotographerDescription
+        photographerSection.insertBefore(divPhotographerDescription,buttonModal);
+        photographerSection.appendChild(imgUser);
     }
 
-    return {imgUser, priceUser, getUserCardDOM, getUserHeader}
+    return {name, imgUser, priceUser, getUserCardDOM, getUserHeader}
 }
