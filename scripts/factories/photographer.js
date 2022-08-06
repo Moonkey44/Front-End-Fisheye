@@ -48,5 +48,18 @@ function photographerFactory(data) {
         photographerSection.appendChild(imgUser);
     }
 
-    return {name, imgUser, priceUser, getUserCardDOM, getUserHeader}
+    function getUserRate()
+    {
+        const rateSection = document.querySelector(".rate");
+        const pRate = document.createElement("p");
+        const heart = document.createElement("i");
+        heart.classList.add("fa-solid","fa-heart");
+        heart.setAttribute("aria-label","likes");
+        heart.setAttribute("role","img");
+        pRate.textContent= priceValue;
+        rateSection.appendChild(heart);
+        rateSection.appendChild(pRate);
+    }
+
+    return {name, imgUser, priceValue, getUserCardDOM, getUserHeader, getUserRate}
 }

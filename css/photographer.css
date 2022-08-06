@@ -16,8 +16,8 @@
 }
 
 .photograph-header img{
-    height: 200px;
-    width: 200px;
+    height: 180px;
+    width: 180px;
     border-radius: 50%;
     -o-object-fit:cover;
        object-fit:cover
@@ -66,7 +66,7 @@
 
 .pictures article{
     width: 250px;
-    margin: 0;
+    margin: 0 0 25px 0;
     justify-self: center;
 }
 
@@ -82,33 +82,51 @@ figure a{
 .pictures figure img{
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .pictures figure video{
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .pictures figcaption{
     display: flex;
     justify-content: space-between;
     color:#901C1C;
+    height: 30px;
+}
+
+figcaption h3{
+    margin: 0;
+    align-self: center;
 }
 
 figcaption div{
     display: flex;
+    align-self: center;
 }
 
 figcaption p{
     margin: 0;
-    align-self: center;
     margin-right: 5px;
 }
 
-.fa-solid{
-    align-self: center;
+.rate{
+    width: 260px;
+    height: 40px;
+    position: fixed;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    bottom: 0;
+    right: 30px;
+    background-color: #DB8876;
+    font-size: 15px;
+    font-weight: bolder;
 }
 
 .modal {

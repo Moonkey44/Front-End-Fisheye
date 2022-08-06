@@ -11,7 +11,7 @@ function displayData(photographers, media)
         if(photographer.id === photographerID){
             const photographerModel = photographerFactory(photographer);
             photographerModel.getUserHeader();
-            const mediaModel = mediaFactory(media,photographerModel.name);
+            photographerModel.getUserRate();
             media.forEach((media) => {
                 if(photographerID === media.photographerId){
                     const mediaModel = mediaFactory(media,photographerModel.name);
