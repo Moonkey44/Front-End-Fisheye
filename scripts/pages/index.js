@@ -34,4 +34,3 @@
     };
     
     init();
-    export { getPhotographersOrMedia };

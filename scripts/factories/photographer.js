@@ -3,7 +3,6 @@ function photographerFactory(data) {
     const picture = `assets/photographers/Sample_Photos/Photographers_ID_Photos/${portrait}`;
     const localisationValue = `${city}, ${country}`;
     const priceValue = `${price}€/jour`;
-
     const imgUser = document.createElement( 'img' );
     const nameUser = document.createElement( 'h2' );
     const localisationUser = document.createElement( 'h3');
@@ -15,6 +14,7 @@ function photographerFactory(data) {
     priceUser.textContent = priceValue;
     imgUser.setAttribute("src", picture);
     imgUser.setAttribute("alt", name);
+    imgUser.setAttribute("class","profile");
 
     function getUserCardDOM() {
         const link = document.createElement( 'a' );
