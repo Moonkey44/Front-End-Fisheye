@@ -22,17 +22,17 @@ function displayDataPhotographer(photographers, media)
             }
             media.forEach((media) => {
                 if(photographerID === media.photographerId){
-                    testArray.push(media.date);
+                    testArray.push(media);
                     const mediaModel = mediaFactory(media,photographerModel.name);
                     picturesSection.appendChild(mediaModel.getPictureCardDOM());
                 }
             })
-
         }
     });
     if(select.value === "date"){    
         console.log(testArray);
     }
+    return testArray;
 }
 
 async function init2(){
@@ -42,6 +42,17 @@ async function init2(){
     const media = await getPhotographersOrMedia("media");
     const sortMedia = getSortArray(media, selectInput.value);
     displayDataPhotographer(photographers, sortMedia);
+    document.querySelectorAll(".heart").forEach(heart => heart.addEventListener("click", function likePicture(e){
+        const nbrOfLikes = parseInt(e.target.parentNode.children[0].textContent)+1;
+        e.target.parentNode.children[0].textContent = nbrOfLikes.toString();
+    }));
+    const links = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]');
+    const linksList = Array.from(links).splice(1);
+    console.log(linksList);
+    linksList.forEach( link => link.addEventListener('click', function buildEvent(e){
+        buildDOMLightbox(e.target, linksList);
+        //document.removeEventListener("click",buildEvent);
+    }));
 }
 
 function getSortArray(media,select){
@@ -60,6 +71,11 @@ function getSortArray(media,select){
 function removePictures(){
     const sectionPicture = document.querySelector(".pictures");
     sectionPicture.remove();
+}
+
+function sortPicture(){
+    removePictures();
+    init2();
 }
 
 init2();

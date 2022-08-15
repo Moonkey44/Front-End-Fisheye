@@ -15,39 +15,53 @@
       </a>
     </header>
     <main id="main">
-      <section class="photograph-header" aria>
+      <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </section>
-      <section class="sort">
+      </div>
+      <div class="sort">
         <label for="sort-select" class="sort-label">Trier par</label>
         <select name="sort" id="sort-select" class="sort-select" onchange="sortPicture()">
           <option value="popularity" selected>Popularité</option>
           <option value="date">Date</option>
           <option value="title">Titre</option>
         </select>
-      </section>
-      <section class="rate"></section>
+      </div>
+      <div class="rate" aria-label="rate"></div>
     </main>
     <section id="contact_modal">
-			<div class="modal">
+			<div class="modal" role="dialog">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Ferme la modale"/>
+          <img role="button" src="assets/icons/close_modal.svg" onclick="closeModal()" alt="Close contact form"/>
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="first">Prénom</label>
+						<input type="text" name="first" id="first" required/>
+            <label for="last">Nom</label>
+            <input type="text" name="last" id="last" required/>
+            <label for="mail">Email</label>
+            <input type="email" name="mail" id="mail" required/>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" required>
+            </textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</section>
+    <div role="dialog" class="lightbox" aria-label="image closeup view">
+      <img role="button" src="assets/icons/close_lightbox.svg" class="close_lightbox" alt="Close dialog"/>
+      <img role="button" src="assets/icons/lightbox_previous.svg" alt="previous image" class="lightbox_prev"/>
+      <img role="button" src="assets/icons/lightbox_next.svg" alt="next image" class="lightbox_next"/>
+      <figure class="pictureContainer_lightbox">
+      </figure>
+    </div>
     <script src="scripts/pages/index.js"></script>
     <script src="scripts/factories/media.js"></script>
     <script src="scripts/factories/photographer.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/utils/buttonManagement.js"></script>
+    <script src="/scripts/utils/lightbox.js"></script>
   </body>
 </html>

@@ -8,13 +8,14 @@
         const videoElt = document.createElement("video");
         videoElt.setAttribute("src", videoPath);
         videoElt.setAttribute("alt", title);
-        videoElt.setAttribute("controls", "true");
+        videoElt.setAttribute("role", "link");
         return videoElt
       }
       else{
         const picturePath = `assets/photographers/Sample_Photos/${getUserFirstName(name)}/${image}`;
         const pictureElt = document.createElement("img");
         pictureElt.setAttribute("src", picturePath);
+        pictureElt.setAttribute("role", "link");
         pictureElt.setAttribute("alt", title);
         return pictureElt
       }
@@ -38,8 +39,10 @@
         const h3 = document.createElement("h3");
         const heart = document.createElement('i');
         heart.classList.add("fa-solid", "fa-heart");
-        heart.setAttribute("aria-label","likes");
+        heart.setAttribute("aria-label","heart");
+        heart.classList.add("heart");
         heart.setAttribute("role","button");
+        pLikes.classList.add("nbrOfLikes");
         pLikes.textContent = likes;
         h3.textContent = title;
         link.appendChild(getVideoOrPicture(image,video));
