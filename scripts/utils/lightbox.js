@@ -1,5 +1,10 @@
 function buildDOMLightbox(element, linksList){
+    const main = document.querySelector("main");
+    const header = document.querySelector("header");
+    main.setAttribute("aria-hidden",true);
+    header.setAttribute("aria-hidden",true);
     const lightbox = document.querySelector(".lightbox");
+    lightbox.setAttribute("aria-hidden",false);
     const figure = document.querySelector('.pictureContainer_lightbox');
     const figcaption = document.createElement("figcaption");
     console.log(element);
@@ -56,6 +61,11 @@ function closeLightbox(){
     const figure = document.querySelector('.pictureContainer_lightbox');
     const media = document.querySelector('.media_lightbox');
     const figcaption = document.querySelector('.figcaption_lightbox');
+    const main = document.querySelector("main");
+    const header = document.querySelector("header");
+    main.setAttribute("aria-hidden",false);
+    header.setAttribute("aria-hidden",false);
+    lightbox.setAttribute("aria-hidden",true);
     figure.removeChild(media);
     figure.removeChild(figcaption);
     lightbox.style.display = "none";
