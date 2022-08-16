@@ -32,9 +32,9 @@
 			<div class="modal" role="dialog">
 				<header>
           <h2>Contactez-moi</h2>
-          <img role="button" src="assets/icons/close_modal.svg" onclick="closeModal()" alt="Close contact form"/>
+          <img role="button" src="assets/icons/close_modal.svg" onclick="closeModal()" class="modal_close" alt="Close contact form"/>
         </header>
-				<form>
+				<form onsubmit="sendModal(event);">
 					<div>
 						<label for="first">Prénom</label>
 						<input type="text" name="first" id="first" required/>
@@ -43,10 +43,10 @@
             <label for="mail">Email</label>
             <input type="email" name="mail" id="mail" required/>
             <label for="message">Votre message</label>
-            <textarea id="message" name="message" required>
-            </textarea>
+            <textarea name="message" id="message"></textarea>
+            </input>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button type="submit" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</section>
