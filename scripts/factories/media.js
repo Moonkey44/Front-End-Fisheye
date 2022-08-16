@@ -8,7 +8,8 @@
         const videoElt = document.createElement("video");
         videoElt.setAttribute("src", videoPath);
         videoElt.setAttribute("alt", title);
-        videoElt.setAttribute("role", "link");
+        videoElt.setAttribute("aria-label", title);
+        videoElt.setAttribute("role","link");
         return videoElt
       }
       else{
@@ -32,7 +33,6 @@
     function getPictureCardDOM(){
         const article = document.createElement("article");
         const figure = document.createElement("figure");
-        const link = document.createElement("a");
         const figcaption = document.createElement("figcaption");
         const divlikes = document.createElement("div");
         const pLikes = document.createElement('p');
@@ -45,12 +45,11 @@
         pLikes.classList.add("nbrOfLikes");
         pLikes.textContent = likes;
         h3.textContent = title;
-        link.appendChild(getVideoOrPicture(image,video));
+        figure.appendChild(getVideoOrPicture(image,video));
         divlikes.appendChild(pLikes);
         divlikes.appendChild(heart);
         figcaption.appendChild(h3);
         figcaption.appendChild(divlikes);
-        figure.appendChild(link);
         figure.appendChild(figcaption);
         article.appendChild(figure);
         return article;
