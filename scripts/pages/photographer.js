@@ -51,7 +51,7 @@ async function init2(){
     console.log(linksList);
     linksList.forEach( link => link.addEventListener('click', function buildEvent(e){
         buildDOMLightbox(e.target, linksList);
-        //document.removeEventListener("click",buildEvent);
+        document.removeEventListener("click",buildEvent);
     }));
 }
 

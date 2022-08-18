@@ -9,6 +9,7 @@ function photographerFactory(data) {
     const descriptionUser = document.createElement( 'p' );
     const priceUser = document.createElement( 'p' );
     nameUser.textContent = name;
+    nameUser.classList.add("name_user");
     localisationUser.textContent = localisationValue;
     descriptionUser.textContent = tagline;
     priceUser.textContent = priceValue;

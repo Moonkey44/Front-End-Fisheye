@@ -1,5 +1,8 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
+    const nameUser = document.querySelector(".name_user");
+    const headerModal = document.querySelector(".header_modal");
+    headerModal.children[0].innerHTML =`Contactez-moi<br>${nameUser.textContent}`;
 	modal.style.display = "block";
     modal.setAttribute("aria-hidden", false);
     const main = document.querySelector("main");

@@ -28,18 +28,17 @@ function buildDOMLightbox(element, linksList){
     figcaption.textContent = element.getAttribute("alt");
     figure.appendChild(figcaption);
     lightbox.style.display = "block";
-    document.querySelector(".lightbox_prev").addEventListener("click",function(){
+    document.querySelector(".lightbox_prev").addEventListener("click",function clickPrevious(){
         previous(linksList);
     });
-    document.querySelector(".lightbox_next").addEventListener("click",function(){
+    document.querySelector(".lightbox_next").addEventListener("click",function clickNext(){
         next(linksList);
     });
-    document.addEventListener("keyup",function(e){
+    document.addEventListener("keyup",function eventOnKeyUp(e){
         onKeyUp(e,linksList);
     });
     document.querySelector(".close_lightbox").addEventListener("click",function(){
         closeLightbox();
-        document.removeEventListener("keyup", onKeyUp);
     });
 }
 
@@ -69,6 +68,7 @@ function closeLightbox(){
     figure.removeChild(media);
     figure.removeChild(figcaption);
     lightbox.style.display = "none";
+    //document.removeEventListener("keyup", eventOnKeyUp);
     document.removeEventListener("click",closeLightbox);
 }
 
@@ -111,6 +111,7 @@ function previous(linksList){
             newImg.classList.add("media_lightbox");
             figcaption.textContent = linksList[i-1].alt;
             figure.replaceChild(newImg,media);
+            break;
         } 
         else if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName === "VIDEO"){
             const newVideo = document.createElement("video");
@@ -120,6 +121,7 @@ function previous(linksList){
             newVideo.classList.add("media_lightbox");
             figcaption.textContent = linksList[i-1].getAttribute("alt");
             figure.replaceChild(newVideo,media);
+            break;
         }
     }
 }
