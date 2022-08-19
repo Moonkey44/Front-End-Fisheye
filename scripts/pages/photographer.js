@@ -45,6 +45,8 @@ async function init2(){
     document.querySelectorAll(".heart").forEach(heart => heart.addEventListener("click", function likePicture(e){
         const nbrOfLikes = parseInt(e.target.parentNode.children[0].textContent)+1;
         e.target.parentNode.children[0].textContent = nbrOfLikes.toString();
+        heart.style.cursor = "auto"; 
+        this.removeEventListener("click", likePicture);
     }));
     const links = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]');
     const linksList = Array.from(links).splice(1);
