@@ -100,7 +100,7 @@ figcaption p{
     margin-right: 5px;
 }
 
-.rate{
+.rate_section{
     width: 260px;
     height: 40px;
     position: fixed;
@@ -112,6 +112,16 @@ figcaption p{
     background-color: #DB8876;
     font-size: 15px;
     font-weight: bolder;
+}
+
+.rate_div{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.fa-heart{
+    margin-left: 6px;
 }
 
 #contact_modal{

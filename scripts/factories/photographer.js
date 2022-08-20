@@ -49,17 +49,24 @@ function photographerFactory(data) {
         photographerSection.appendChild(imgUser);
     }
 
-    function getUserRate()
+    function getUserRate(allLikes)
     {
-        const rateSection = document.querySelector(".rate");
-        const pRate = document.createElement("p");
+        const rateSection = document.querySelector(".rate_section");
+        const rateDiv = document.createElement("div");
+        const price = document.createElement("p");
         const heart = document.createElement("i");
+        const rate = document.createElement("p");
         heart.classList.add("fa-solid","fa-heart");
+        rateDiv.classList.add("rate_div");
+        rate.classList.add("rate");
         heart.setAttribute("aria-label","likes");
         heart.setAttribute("role","img");
-        pRate.textContent= priceValue;
-        rateSection.appendChild(heart);
-        rateSection.appendChild(pRate);
+        price.textContent = priceValue;
+        rate.textContent = allLikes;
+        rateDiv.appendChild(rate);
+        rateDiv.appendChild(heart);
+        rateSection.appendChild(rateDiv);
+        rateSection.appendChild(price);
     }
 
     return {name, imgUser, priceValue, getUserCardDOM, getUserHeader, getUserRate}

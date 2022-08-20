@@ -1,6 +1,6 @@
  function mediaFactory(data,name)
  {
-    const { id, photographerId, title, image, video, likes, date, price } = data;
+    const {title, image, video, likes} = data;
 
     function getVideoOrPicture(image, video){
       if(image === undefined){

@@ -11,28 +11,30 @@ function displayDataPhotographer(photographers, media)
     const select = document.querySelector(".sort-select");
     picturesSection.setAttribute("class","pictures");
     main.insertBefore(picturesSection,rate);
-    const testArray = [];
-    photographers.forEach((photographer) => {
+    const dateArray = [];
+    let allLikes = 0;
+    photographers.forEach((photographer) => { 
         if(photographer.id === photographerID){
             display++;
-            const photographerModel = photographerFactory(photographer);
-            if(display === 1){
-                photographerModel.getUserHeader();
-                photographerModel.getUserRate();
-            }
+            const photographerModel = photographerFactory(photographer);   
             media.forEach((media) => {
                 if(photographerID === media.photographerId){
-                    testArray.push(media);
+                    allLikes += media.likes;
+                    console.log(allLikes);
+                    dateArray.push(media.date);
                     const mediaModel = mediaFactory(media,photographerModel.name);
                     picturesSection.appendChild(mediaModel.getPictureCardDOM());
                 }
             })
+            if(display === 1){   
+                photographerModel.getUserHeader();
+                photographerModel.getUserRate(allLikes);
+            }
         }
     });
     if(select.value === "date"){    
-        console.log(testArray);
+        console.log(dateArray);
     }
-    return testArray;
 }
 
 async function init2(){
@@ -43,14 +45,16 @@ async function init2(){
     const sortMedia = getSortArray(media, selectInput.value);
     displayDataPhotographer(photographers, sortMedia);
     document.querySelectorAll(".heart").forEach(heart => heart.addEventListener("click", function likePicture(e){
-        const nbrOfLikes = parseInt(e.target.parentNode.children[0].textContent)+1;
-        e.target.parentNode.children[0].textContent = nbrOfLikes.toString();
+        const rate = parseInt(document.querySelector(".rate").textContent)+1;
+        const nbrOfLikes = parseInt(e.target.parentNode.children[0].textContent);
+        const addLike = nbrOfLikes + 1;
+        document.querySelector(".rate").textContent = rate.toString();
+        e.target.parentNode.children[0].textContent = addLike.toString();
         heart.style.cursor = "auto"; 
         this.removeEventListener("click", likePicture);
     }));
     const links = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]');
     const linksList = Array.from(links).splice(1);
-    console.log(linksList);
     linksList.forEach( link => link.addEventListener('click', function buildEvent(e){
         buildDOMLightbox(e.target, linksList);
         document.removeEventListener("click",buildEvent);
@@ -79,5 +83,7 @@ function sortPicture(){
     removePictures();
     init2();
 }
+
+
 
 init2();

@@ -1,4 +1,4 @@
-function buildDOMLightbox(element, linksList){
+function buildDOMLightbox(element, linklist){
     const main = document.querySelector("main");
     const header = document.querySelector("header");
     main.setAttribute("aria-hidden",true);
@@ -11,8 +11,8 @@ function buildDOMLightbox(element, linksList){
     if(element.src.match(/\.jpg/)){
         const image = document.createElement("img");
         image.setAttribute('src',element.getAttribute('src'));
-        image.setAttribute('alt', element.getAttribute('src'));
-        image.classList.add("media_lightbox")
+        image.setAttribute('alt', element.getAttribute('alt'));
+        image.classList.add("media_lightbox");
         figcaption.textContent = element.getAttribute('src');
         figure.appendChild(image);
     }
@@ -37,12 +37,15 @@ function buildDOMLightbox(element, linksList){
     document.addEventListener("keyup",function eventOnKeyUp(e){
         onKeyUp(e,linksList);
     });
-    document.querySelector(".close_lightbox").addEventListener("click",function(){
+    document.querySelector(".close_lightbox").addEventListener("click",function closeEvent(){
         closeLightbox();
+        document.removeEventListener("click", closeEvent);
     });
 }
 
-function onKeyUp(e, linksList){
+function onKeyUp(e){
+    const links = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]');
+    const linksList = Array.from(links).splice(1);
     switch(e.key){
         case "Escape":
             closeLightbox();
@@ -53,6 +56,7 @@ function onKeyUp(e, linksList){
         case "ArrowLeft":
             previous(linksList);        
     }
+    document.removeEventListener("keyup",onKeyUp);
 }
 
 function closeLightbox(){
@@ -68,30 +72,28 @@ function closeLightbox(){
     figure.removeChild(media);
     figure.removeChild(figcaption);
     lightbox.style.display = "none";
-    //document.removeEventListener("keyup", eventOnKeyUp);
-    document.removeEventListener("click",closeLightbox);
 }
 
 function next(linksList){
     const figure = document.querySelector('.pictureContainer_lightbox');
     const media = document.querySelector(".media_lightbox");
     const figcaption = document.querySelector(".figcaption_lightbox");
+    const newImg = document.createElement("img");
+    const newVideo = document.createElement("video");
     for(i=0; i < linksList.length; i++){
-        if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i+1] !== undefined && linksList[i+1].tagName !== "VIDEO"){
-            const newImg = document.createElement("img");
+        if(media.src === linksList[i].currentSrc && linksList[i+1] !== undefined && linksList[i+1].tagName !== "VIDEO"){
             newImg.setAttribute("src",linksList[i+1].currentSrc);
             newImg.setAttribute("alt",linksList[i+1].alt);
-            newImg.classList.add("media_lightbox");
+            newImg.classList.add("newMedia_lightbox");
             figcaption.textContent = linksList[i+1].getAttribute("alt");
             figure.replaceChild(newImg,media);
             break;
         }
         else if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i+1] !== undefined && linksList[i+1].tagName === "VIDEO"){
-            const newVideo = document.createElement("video");
             newVideo.setAttribute("src",linksList[i+1].currentSrc);
             newVideo.setAttribute("alt",linksList[i+1].alt);
             newVideo.setAttribute("control", "true");
-            newVideo.classList.add("media_lightbox");
+            newVideo.classList.add("newMedia_lightbox");
             figcaption.textContent = linksList[i+1].getAttribute("alt");
             figure.replaceChild(newVideo,media);
             break;
@@ -103,25 +105,25 @@ function previous(linksList){
     const figure = document.querySelector('.pictureContainer_lightbox');
     const media = document.querySelector(".media_lightbox");
     const figcaption = document.querySelector(".figcaption_lightbox");
-    for(i=0; i < linksList.length; i++){
-        if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName !== "VIDEO" ){
-            const newImg = document.createElement("img");
-            newImg.setAttribute("src",linksList[i-1].currentSrc);
-            newImg.setAttribute("alt",linksList[i-1].alt);
-            newImg.classList.add("media_lightbox");
-            figcaption.textContent = linksList[i-1].alt;
-            figure.replaceChild(newImg,media);
-            break;
-        } 
-        else if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName === "VIDEO"){
-            const newVideo = document.createElement("video");
-            newVideo.setAttribute("src",linksList[i-1].currentSrc);
-            newVideo.setAttribute("alt",linksList[i-1].alt);
-            newVideo.setAttribute("controls", "true");
-            newVideo.classList.add("media_lightbox");
-            figcaption.textContent = linksList[i-1].getAttribute("alt");
-            figure.replaceChild(newVideo,media);
-            break;
-        }
-    }
+    // for(i=0; i < linksList.length; i++){
+    //     if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName !== "VIDEO" ){
+    //         const newImg = document.createElement("img");
+    //         newImg.setAttribute("src",linksList[i-1].currentSrc);
+    //         newImg.setAttribute("alt",linksList[i-1].alt);
+    //         newImg.classList.add("media_lightbox");
+    //         figcaption.textContent = linksList[i-1].alt;
+    //         figure.replaceChild(newImg,media);
+    //         break;
+    //     } 
+    //     else if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName === "VIDEO"){
+    //         const newVideo = document.createElement("video");
+    //         newVideo.setAttribute("src",linksList[i-1].currentSrc);
+    //         newVideo.setAttribute("alt",linksList[i-1].alt);
+    //         newVideo.setAttribute("controls", "true");
+    //         newVideo.classList.add("media_lightbox");
+    //         figcaption.textContent = linksList[i-1].getAttribute("alt");
+    //         figure.replaceChild(newVideo,media);
+    //         break;
+    //     }
+    // }
 }
