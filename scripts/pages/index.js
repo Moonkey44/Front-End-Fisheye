@@ -11,7 +11,7 @@
                     return data.media
                 }
             }).catch(console.error);        
-        return (data)
+        return data
     }
 
     function displayData(photographers) {
