@@ -76,7 +76,7 @@ function next(linksList){
     const figure = document.querySelector('.pictureContainer_lightbox');
     const media = document.querySelector(".media_lightbox");
     const figcaption = document.querySelector(".figcaption_lightbox");
-    for(i=0; i < linksList.length; i++){
+    for(let i=0; i < linksList.length; i++){
         if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i+1] !== undefined && linksList[i+1].tagName !== "VIDEO"){
             const newImg = document.createElement("img");
             newImg.setAttribute("src",linksList[i+1].currentSrc);
@@ -104,7 +104,7 @@ function next(linksList){
 function previous(linksList){
     const figure = document.querySelector('.pictureContainer_lightbox');
     const figcaption = document.querySelector(".figcaption_lightbox");
-    for(i=0; i < linksList.length; i++){
+    for( let i=0; i < linksList.length; i++){
         if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName !== "VIDEO" ){
             const newImg = document.createElement("img");
             newImg.setAttribute("src",linksList[i-1].currentSrc);
