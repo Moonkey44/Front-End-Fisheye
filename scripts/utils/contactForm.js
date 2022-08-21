@@ -1,4 +1,4 @@
-function displayModal() {
+function displayModal(){
     const modal = document.getElementById("contact_modal");
     const nameUser = document.querySelector(".name_user");
     const headerModal = document.querySelector(".header_modal");
@@ -13,6 +13,8 @@ function displayModal() {
     main.style.opacity = 0.6;
     const firstInput = document.getElementById("first");
     firstInput.focus();
+    deleteFocus();
+    document.querySelector(".modal_close").setAttribute("tabindex","0");
     document.addEventListener("keyup",function onKeyUp(e){
         switch(e.key){
             case "Escape":
@@ -33,6 +35,8 @@ function closeModal() {
     header.style.opacity = 1;
     main.style.opacity = 1;
     resetModal();
+    document.querySelector(".modal_close").removeAttribute("tabindex");
+    activeFocus();
 }
 
 function returnListInput(){

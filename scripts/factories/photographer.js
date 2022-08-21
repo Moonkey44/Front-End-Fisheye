@@ -9,7 +9,9 @@ function photographerFactory(data) {
     const descriptionUser = document.createElement( 'p' );
     const priceUser = document.createElement( 'p' );
     nameUser.textContent = name;
-    nameUser.classList.add("name_user");        
+    nameUser.classList.add("name_user");
+    priceUser.classList.add("price");
+    descriptionUser.classList.add("description");    
     localisationUser.textContent = localisationValue;
     descriptionUser.textContent = tagline;
     priceUser.textContent = priceValue;
@@ -29,8 +31,6 @@ function photographerFactory(data) {
         priceUser.setAttribute("tabindex",0);
         link.setAttribute("href",`../../photographer.html?id=${id}`);
         link.setAttribute('aria-label',`lien vers la page du photographe ${nameUser}`);                  
-        priceUser.classList.add("price");
-        descriptionUser.classList.add("description");
         figcaption.appendChild(localisationUser);
         figcaption.appendChild(descriptionUser);
         figcaption.appendChild(priceUser);
@@ -68,6 +68,7 @@ function photographerFactory(data) {
         heart.classList.add("fa-solid","fa-heart");
         rateDiv.classList.add("rate_div");
         rate.classList.add("rate");
+        price.classList.add("price_photographer");
         rateDiv.setAttribute("tabindex",0);
         rateDiv.setAttribute("aria-label",`${name} a ${allLikes} coeurs au totals`);
         heart.setAttribute("aria-label","likes");

@@ -99,4 +99,24 @@ function addlikeMedia(event){
     console.log(event);
 }
 
+function deleteFocus(){
+    const elementsFocus = document.querySelectorAll("*[tabindex]");
+    elementsFocus.forEach(elementFocus => {
+        elementFocus.setAttribute("tabindex","-1");
+    });
+}
+
+function activeFocus(){
+    const elementsUnfocus = document.querySelectorAll("*[tabindex]");
+    console.log(elementsUnfocus);
+     elementsUnfocus.forEach(elementUnfocus => {
+        if(elementUnfocus.className === "rate_div" || elementUnfocus.className === "price_photographer"){
+            elementUnfocus.setAttribute("tabindex","0");
+        }
+        else{
+            elementUnfocus.setAttribute("tabindex","1");
+        }
+    });
+}
+
 init2();
