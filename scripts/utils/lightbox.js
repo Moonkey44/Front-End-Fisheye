@@ -1,4 +1,4 @@
-function buildDOMLightbox(element, linklist){
+function buildDOMLightbox(element,linksList){
     const main = document.querySelector("main");
     const header = document.querySelector("header");
     main.setAttribute("aria-hidden",true);
@@ -43,9 +43,7 @@ function buildDOMLightbox(element, linklist){
     });
 }
 
-function onKeyUp(e){
-    const links = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]');
-    const linksList = Array.from(links).splice(1);
+function onKeyUp(e, linksList){
     switch(e.key){
         case "Escape":
             closeLightbox();
@@ -78,24 +76,26 @@ function next(linksList){
     const figure = document.querySelector('.pictureContainer_lightbox');
     const media = document.querySelector(".media_lightbox");
     const figcaption = document.querySelector(".figcaption_lightbox");
-    const newImg = document.createElement("img");
-    const newVideo = document.createElement("video");
     for(i=0; i < linksList.length; i++){
-        if(media.src === linksList[i].currentSrc && linksList[i+1] !== undefined && linksList[i+1].tagName !== "VIDEO"){
+        if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i+1] !== undefined && linksList[i+1].tagName !== "VIDEO"){
+            const newImg = document.createElement("img");
             newImg.setAttribute("src",linksList[i+1].currentSrc);
             newImg.setAttribute("alt",linksList[i+1].alt);
-            newImg.classList.add("newMedia_lightbox");
+            newImg.classList.add("media_lightbox");
             figcaption.textContent = linksList[i+1].getAttribute("alt");
-            figure.replaceChild(newImg,media);
+            figure.removeChild(media);
+            figure.insertBefore(newImg,figcaption);
             break;
         }
         else if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i+1] !== undefined && linksList[i+1].tagName === "VIDEO"){
+            const newVideo = document.createElement("video");
             newVideo.setAttribute("src",linksList[i+1].currentSrc);
             newVideo.setAttribute("alt",linksList[i+1].alt);
             newVideo.setAttribute("control", "true");
-            newVideo.classList.add("newMedia_lightbox");
+            newVideo.classList.add("media_lightbox");
             figcaption.textContent = linksList[i+1].getAttribute("alt");
-            figure.replaceChild(newVideo,media);
+            figure.removeChild(media);
+            figure.insertBefore(newVideo,figcaption);
             break;
         }
     }
@@ -103,27 +103,28 @@ function next(linksList){
 
 function previous(linksList){
     const figure = document.querySelector('.pictureContainer_lightbox');
-    const media = document.querySelector(".media_lightbox");
     const figcaption = document.querySelector(".figcaption_lightbox");
-    // for(i=0; i < linksList.length; i++){
-    //     if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName !== "VIDEO" ){
-    //         const newImg = document.createElement("img");
-    //         newImg.setAttribute("src",linksList[i-1].currentSrc);
-    //         newImg.setAttribute("alt",linksList[i-1].alt);
-    //         newImg.classList.add("media_lightbox");
-    //         figcaption.textContent = linksList[i-1].alt;
-    //         figure.replaceChild(newImg,media);
-    //         break;
-    //     } 
-    //     else if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName === "VIDEO"){
-    //         const newVideo = document.createElement("video");
-    //         newVideo.setAttribute("src",linksList[i-1].currentSrc);
-    //         newVideo.setAttribute("alt",linksList[i-1].alt);
-    //         newVideo.setAttribute("controls", "true");
-    //         newVideo.classList.add("media_lightbox");
-    //         figcaption.textContent = linksList[i-1].getAttribute("alt");
-    //         figure.replaceChild(newVideo,media);
-    //         break;
-    //     }
-    // }
+    for(i=0; i < linksList.length; i++){
+        if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName !== "VIDEO" ){
+            const newImg = document.createElement("img");
+            newImg.setAttribute("src",linksList[i-1].currentSrc);
+            newImg.setAttribute("alt",linksList[i-1].alt);
+            newImg.classList.add("media_lightbox");
+            figcaption.textContent = linksList[i-1].alt;
+            figure.removeChild(media);
+            figure.insertBefore(newImg,figcaption);
+            break;
+         } 
+         else if(media.src !== null && media.src === linksList[i].currentSrc && linksList[i-1] !== undefined && linksList[i-1].tagName === "VIDEO"){
+            const newVideo = document.createElement("video");
+            newVideo.setAttribute("src",linksList[i-1].currentSrc);
+            newVideo.setAttribute("alt",linksList[i-1].alt);
+            newVideo.setAttribute("controls", "true");
+            newVideo.classList.add("media_lightbox");
+            figcaption.textContent = linksList[i-1].getAttribute("alt");
+            figure.removeChild(media);
+            figure.insertBefore(newVideo,figcaption);
+            break;
+        }
+    }
 }

@@ -7,9 +7,9 @@
         const videoPath = `assets/photographers/Sample_Photos/${getUserFirstName(name)}/${video}`;
         const videoElt = document.createElement("video");
         videoElt.setAttribute("src", videoPath);
-        videoElt.setAttribute("alt", title);
         videoElt.setAttribute("aria-label", title);
         videoElt.setAttribute("role","link");
+        videoElt.setAttribute("tabindex",1);
         return videoElt
       }
       else{
@@ -18,6 +18,7 @@
         pictureElt.setAttribute("src", picturePath);
         pictureElt.setAttribute("role", "link");
         pictureElt.setAttribute("alt", title);
+        pictureElt.setAttribute("tabindex",1);
         return pictureElt
       }
     }
@@ -42,9 +43,12 @@
         heart.setAttribute("aria-label","heart");
         heart.classList.add("heart");
         heart.setAttribute("role","button");
+        heart.setAttribute("tabindex",1);
         pLikes.classList.add("nbrOfLikes");
+        pLikes.setAttribute("tabindex",1);
         pLikes.textContent = likes;
         h3.textContent = title;
+        h3.setAttribute("tabindex",1);
         figure.appendChild(getVideoOrPicture(image,video));
         divlikes.appendChild(pLikes);
         divlikes.appendChild(heart);

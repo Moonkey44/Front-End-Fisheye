@@ -6,10 +6,10 @@ function displayDataPhotographer(photographers, media)
     const urlsearchParams = new URLSearchParams(document.location.search);
     const photographerID = parseInt(urlsearchParams.get("id"));
     const main = document.querySelector("#main");
-    const rate = document.querySelector(".rate");
+    const rate = document.querySelector(".rateDiv");
     const picturesSection = document.createElement("section");
     const select = document.querySelector(".sort-select");
-    picturesSection.setAttribute("class","pictures");
+    picturesSection.classList.add("pictures");
     main.insertBefore(picturesSection,rate);
     const dateArray = [];
     let allLikes = 0;
@@ -20,7 +20,6 @@ function displayDataPhotographer(photographers, media)
             media.forEach((media) => {
                 if(photographerID === media.photographerId){
                     allLikes += media.likes;
-                    console.log(allLikes);
                     dateArray.push(media.date);
                     const mediaModel = mediaFactory(media,photographerModel.name);
                     picturesSection.appendChild(mediaModel.getPictureCardDOM());
@@ -44,15 +43,8 @@ async function init2(){
     const media = await getPhotographersOrMedia("media");
     const sortMedia = getSortArray(media, selectInput.value);
     displayDataPhotographer(photographers, sortMedia);
-    document.querySelectorAll(".heart").forEach(heart => heart.addEventListener("click", function likePicture(e){
-        const rate = parseInt(document.querySelector(".rate").textContent)+1;
-        const nbrOfLikes = parseInt(e.target.parentNode.children[0].textContent);
-        const addLike = nbrOfLikes + 1;
-        document.querySelector(".rate").textContent = rate.toString();
-        e.target.parentNode.children[0].textContent = addLike.toString();
-        heart.style.cursor = "auto"; 
-        this.removeEventListener("click", likePicture);
-    }));
+    document.querySelectorAll(".heart").forEach(heart => heart.addEventListener("click", clickLikeEvent));
+    document.querySelectorAll(".heart").forEach(heart => heart.addEventListener("keyup", enterLikeEvent));
     const links = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]');
     const linksList = Array.from(links).splice(1);
     linksList.forEach( link => link.addEventListener('click', function buildEvent(e){
@@ -84,6 +76,27 @@ function sortPicture(){
     init2();
 }
 
+function clickLikeEvent(e){
+    addlikeMedia(e);
+    this.removeEventListener("click", clickLikeEvent);
+    this.removeEventListener("keyup", enterLikeEvent);
+}
 
+function enterLikeEvent(e){
+    if(e.key === "Enter"){
+        addlikeMedia(e);
+        this.removeEventListener("keyup",enterLikeEvent);
+        this.removeEventListener("click",clickLikeEvent);
+    }
+}
+
+function addlikeMedia(event){
+    const rate = parseInt(document.querySelector(".rate").textContent)+1;
+    document.querySelector(".rate").textContent = rate.toString();
+    const nbrOfLikes = parseInt(event.target.parentNode.children[0].textContent);
+    const addLike = nbrOfLikes + 1;
+    event.target.parentNode.children[0].textContent = addLike.toString();
+    console.log(event);
+}
 
 init2();
