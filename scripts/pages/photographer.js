@@ -96,7 +96,8 @@ function addlikeMedia(event){
     const nbrOfLikes = parseInt(event.target.parentNode.children[0].textContent);
     const addLike = nbrOfLikes + 1;
     event.target.parentNode.children[0].textContent = addLike.toString();
-    console.log(event);
+    //console.log(event);
+    event.target.style.cursor = "auto";
 }
 
 function deleteFocus(){
@@ -108,8 +109,8 @@ function deleteFocus(){
 
 function activeFocus(){
     const elementsUnfocus = document.querySelectorAll("*[tabindex]");
-    console.log(elementsUnfocus);
-     elementsUnfocus.forEach(elementUnfocus => {
+    //console.log(elementsUnfocus);
+    elementsUnfocus.forEach(elementUnfocus => {
         if(elementUnfocus.className === "rate_div" || elementUnfocus.className === "price_photographer"){
             elementUnfocus.setAttribute("tabindex","0");
         }

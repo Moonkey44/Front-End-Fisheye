@@ -4,7 +4,6 @@ function displayModal(){
     const headerModal = document.querySelector(".header_modal");
     headerModal.children[0].innerHTML =`Contactez-moi<br>${nameUser.textContent}`;
 	modal.style.display = "block";
-    modal.setAttribute("aria-hidden", false);
     const main = document.querySelector("main");
     const header = document.querySelector("header");
     main.setAttribute("aria-hidden",true);
@@ -15,19 +14,24 @@ function displayModal(){
     firstInput.focus();
     deleteFocus();
     document.querySelector(".modal_close").setAttribute("tabindex","0");
-    document.addEventListener("keyup",function onKeyUp(e){
-        switch(e.key){
-            case "Escape":
-                closeModal();               
-                this.removeEventListener("keyup",onKeyUp);
+    document.addEventListener("keyup",function escapeKeyUp(e){
+        if(e.key === "Escape"){
+            closeModal();               
+            this.removeEventListener("keyup",escapeKeyUp);
         }
     });
+    document.querySelector(".modal_close").addEventListener("keyup",function enterKeyUp(e){
+        if(e.key === "Enter"){
+            closeModal();
+            this.removeEventListener("keyup",enterKeyUp);
+        }
+    });
+    
 }
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
-    modal.setAttribute("aria-hidden", true);
+    modal.style.display = "none";       
     const main = document.querySelector("main");
     const header = document.querySelector("header");
     main.setAttribute("aria-hidden",false);
