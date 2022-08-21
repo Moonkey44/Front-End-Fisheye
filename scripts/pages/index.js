@@ -28,7 +28,7 @@
 
     async function init() {
         // Récupère les datas des photographes
-        const photographers = await getPhotographersOrMedia("photographers").catch(console.error);
+        const photographers = await getPhotographersOrMedia("photographers");
         displayData(photographers);
     }
     
