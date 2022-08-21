@@ -10,6 +10,7 @@ function photographerFactory(data) {
     const priceUser = document.createElement( 'p' );
     nameUser.textContent = name;
     nameUser.classList.add("name_user");
+    nameUser.setAttribute("id",id);
     priceUser.classList.add("price");
     descriptionUser.classList.add("description");    
     localisationUser.textContent = localisationValue;
@@ -20,17 +21,18 @@ function photographerFactory(data) {
     imgUser.setAttribute("class","profile");
 
     function getUserCardDOM() {
-        const link = document.createElement( 'a' );
-        const article = document.createElement( 'article' );
-        const figure = document.createElement( 'figure' );
-        const figcaption = document.createElement( 'figcaption' );
+        const link = document.createElement('a');
+        const article = document.createElement('article');
+        const figure = document.createElement('figure');
+        const figcaption = document.createElement('figcaption');
         imgUser .setAttribute("tabindex",0);
         nameUser.setAttribute("tabindex",0);
         localisationUser.setAttribute("tabindex",0);
         descriptionUser.setAttribute("tabindex",0);
         priceUser.setAttribute("tabindex",0);
+        link.setAttribute("id","link");
         link.setAttribute("href",`photographer.html?id=${id}`);
-        link.setAttribute('aria-label',`lien vers la page du photographe ${nameUser}`);                  
+        link.setAttribute('aria-labelledby',`link ${id}`);                  
         figcaption.appendChild(localisationUser);
         figcaption.appendChild(descriptionUser);
         figcaption.appendChild(priceUser);
