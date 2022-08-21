@@ -26,7 +26,6 @@ function displayModal(){
             this.removeEventListener("keyup",enterKeyUp);
         }
     });
-    
 }
 
 function closeModal() {

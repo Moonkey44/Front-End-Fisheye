@@ -1,5 +1,5 @@
     async function getPhotographersOrMedia(choice) {
-        const newRequest = new Request("../../data/photographers.json");
+        const newRequest = new Request("data/photographers.json");
         const data = await fetch(newRequest)
             .then((response) => response.json())
             .then((data) => {
