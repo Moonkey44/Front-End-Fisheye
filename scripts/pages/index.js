@@ -10,8 +10,7 @@
                 else if(choice === "media"){
                     return data.media
                 }
-            })
-            .catch(console.error);        
+            }).catch(console.error);        
         return (data)
     }
 
