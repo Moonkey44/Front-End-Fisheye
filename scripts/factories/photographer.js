@@ -29,7 +29,7 @@ function photographerFactory(data) {
         localisationUser.setAttribute("tabindex",0);
         descriptionUser.setAttribute("tabindex",0);
         priceUser.setAttribute("tabindex",0);
-        link.setAttribute("href",`../../photographer.html?id=${id}`);
+        link.setAttribute("href",`photographer.html?id=${id}`);
         link.setAttribute('aria-label',`lien vers la page du photographe ${nameUser}`);                  
         figcaption.appendChild(localisationUser);
         figcaption.appendChild(descriptionUser);
