@@ -25,8 +25,8 @@
 
     function getUserFirstName(name){
         const firstName = name.substring(0,name.indexOf(' '));
-        if(firstName.search(/\-/)){  
-          const trueFirstName = firstName.replace(/\-/," ");
+        if(firstName.search(/-/)){  
+          const trueFirstName = firstName.replace(/-/," ");
           return trueFirstName;
         }
     }
