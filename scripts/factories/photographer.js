@@ -75,8 +75,7 @@ function photographerFactory(data) {
         rateDiv.setAttribute("aria-label",`${name} a ${allLikes} coeurs au totals`);
         heart.setAttribute("aria-label","likes");
         heart.setAttribute("role","img");
-        price.textContent = priceValue;  
-        price.setAttribute("aria-label", `${price.textContent}`);       
+        price.textContent = priceValue;       
         price.setAttribute("tabindex",0);
         rate.textContent = allLikes;
         rateDiv.appendChild(rate);
