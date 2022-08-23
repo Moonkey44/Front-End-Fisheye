@@ -1,48 +1,3 @@
-function buildDOMLightbox(element){
-    const main = document.querySelector("main");
-    const header = document.querySelector("header");
-    const lightbox = document.querySelector(".lightbox");
-    const close = document.querySelector(".close_lightbox");
-    const arrowLeft = document.querySelector(".lightbox_prev");
-    const arrowRight = document.querySelector(".lightbox_next");
-    const figure = document.querySelector('.pictureContainer_lightbox');
-    const figcaption = document.createElement("figcaption");
-    figcaption.classList.add('figcaption_lightbox');
-    main.setAttribute("aria-hidden",true);
-    header.setAttribute("aria-hidden",true);
-    lightbox.setAttribute("aria-hidden",false);
-    deleteMainFocus();
-    figcaption.setAttribute("tabindex","0");
-    arrowLeft.setAttribute("tabindex","0");
-    arrowRight.setAttribute("tabindex","0");
-    close.setAttribute("tabindex","0");
-    if(element.src.match(/\.jpg/)){
-        const image = document.createElement("img");
-        image.setAttribute("tabindex","0");
-        image.setAttribute('src',element.getAttribute('src'));
-        image.setAttribute('alt', element.getAttribute('alt'));
-        image.classList.add("media_lightbox");
-        console.log(event);
-        figcaption.textContent = element.nextElementSibling.children[0].textContent;
-        figure.appendChild(image);
-    }
-    else{
-        const video = document.createElement("video");
-        video.setAttribute("tabindex","0");
-        figcaption.textContent = element.nextElementSibling.children[0].textContent;
-        video.setAttribute('src',element.getAttribute("src"));
-        video.setAttribute('aria-label', element.getAttribute("aria-label"));
-        video.setAttribute("controls", "true");
-        video.classList.add("media_lightbox");
-        figure.appendChild(video);
-    }
-    figure.appendChild(figcaption);
-    lightbox.style.display = "block";
-    document.addEventListener("keyup",onKeyUp);
-    arrowLeft.addEventListener("click",previousEvent);
-    arrowRight.addEventListener("click",nextEvent);
-    close.addEventListener("click",closeLightbox);
-}
 function onKeyUp(e){
     switch(e.key){
         case "Escape":
@@ -123,3 +78,51 @@ function loadNewMedia(counter){
         }
     }
 }
+
+
+function buildDOMLightbox(element){
+    const main = document.querySelector("main");
+    const header = document.querySelector("header");
+    const lightbox = document.querySelector(".lightbox");
+    const close = document.querySelector(".close_lightbox");
+    const arrowLeft = document.querySelector(".lightbox_prev");
+    const arrowRight = document.querySelector(".lightbox_next");
+    const figure = document.querySelector('.pictureContainer_lightbox');
+    const figcaption = document.createElement("figcaption");
+    figcaption.classList.add('figcaption_lightbox');
+    main.setAttribute("aria-hidden",true);
+    header.setAttribute("aria-hidden",true);
+    lightbox.setAttribute("aria-hidden",false);
+    deleteMainFocus();
+    figcaption.setAttribute("tabindex","0");
+    arrowLeft.setAttribute("tabindex","0");
+    arrowRight.setAttribute("tabindex","0");
+    close.setAttribute("tabindex","0");
+    if(element.src.match(/\.jpg/)){
+        const image = document.createElement("img");
+        image.setAttribute("tabindex","0");
+        image.setAttribute('src',element.getAttribute('src'));
+        image.setAttribute('alt', element.getAttribute('alt'));
+        image.classList.add("media_lightbox");
+        console.log(event);
+        figcaption.textContent = element.nextElementSibling.children[0].textContent;
+        figure.appendChild(image);
+    }
+    else{
+        const video = document.createElement("video");
+        video.setAttribute("tabindex","0");
+        figcaption.textContent = element.nextElementSibling.children[0].textContent;
+        video.setAttribute('src',element.getAttribute("src"));
+        video.setAttribute('aria-label', element.getAttribute("aria-label"));
+        video.setAttribute("controls", "true");
+        video.classList.add("media_lightbox");
+        figure.appendChild(video);
+    }
+    figure.appendChild(figcaption);
+    lightbox.style.display = "block";
+    document.addEventListener("keyup",onKeyUp);
+    arrowLeft.addEventListener("click",previousEvent);
+    arrowRight.addEventListener("click",nextEvent);
+    close.addEventListener("click",closeLightbox);
+}
+
