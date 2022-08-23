@@ -80,7 +80,6 @@ function activeMainFocus(){
 
 function deleteMainFocus(){
     const elementsFocus = document.querySelectorAll("*[tabindex]");
-    console.log(elementsFocus);
     elementsFocus.forEach(elementFocus => {
         elementFocus.setAttribute("tabindex","-1");
     });

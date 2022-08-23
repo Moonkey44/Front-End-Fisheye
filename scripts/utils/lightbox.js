@@ -48,8 +48,11 @@ function previousEvent(){
 }
 
 function loadNewMedia(counter){
-    const links = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]');
-    const linksList = Array.from(links).splice(1).splice(0,11);
+    //Convertit la liste d'éléments en tableau et enlève le 1er élément correspondant a l'image de profil du photographe
+    const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]')).splice(1);
+    //Enlève le dernier élément du tableau correspondant à l'image courante de la lightbox 
+    //(sinon on boucle sans cesse lors de la décrementation de la liste) 
+    const linksList = links.splice(0,links.length-1);
     console.log(linksList);
     const mediaCurrent = document.querySelector(".media_lightbox");
     const figure = document.querySelector('.pictureContainer_lightbox');
@@ -104,7 +107,6 @@ function buildDOMLightbox(element){
         image.setAttribute('src',element.getAttribute('src'));
         image.setAttribute('alt', element.getAttribute('alt'));
         image.classList.add("media_lightbox");
-        console.log(event);
         figcaption.textContent = element.nextElementSibling.children[0].textContent;
         figure.appendChild(image);
     }
