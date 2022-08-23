@@ -7,8 +7,8 @@
         const videoPath = `assets/photographers/Sample_Photos/${getUserFirstName(name)}/${video}`;
         const videoElt = document.createElement("video");
         videoElt.setAttribute("src", videoPath);
-        videoElt.setAttribute("aria-label",`video`);
-        videoElt.setAttribute("role","link");
+        videoElt.setAttribute("aria-label",title);
+        //videoElt.setAttribute("role","link");
         videoElt.setAttribute("tabindex",1);
         return videoElt
       }
@@ -16,8 +16,8 @@
         const picturePath = `assets/photographers/Sample_Photos/${getUserFirstName(name)}/${image}`;
         const pictureElt = document.createElement("img");
         pictureElt.setAttribute("src", picturePath);
-        pictureElt.setAttribute("role", "link");
-        pictureElt.setAttribute("alt", "image");
+        //pictureElt.setAttribute("role", "link");
+        pictureElt.setAttribute("alt", title);
         pictureElt.setAttribute("tabindex",1);
         return pictureElt
       }

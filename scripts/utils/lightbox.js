@@ -53,7 +53,6 @@ function loadNewMedia(counter){
     //Enlève le dernier élément du tableau correspondant à l'image courante de la lightbox 
     //(sinon on boucle sans cesse lors de la décrementation de la liste) 
     const linksList = links.splice(0,links.length-1);
-    console.log(linksList);
     const mediaCurrent = document.querySelector(".media_lightbox");
     const figure = document.querySelector('.pictureContainer_lightbox');
     const figcaption = document.querySelector(".figcaption_lightbox");

@@ -17,7 +17,7 @@ function photographerFactory(data) {
     descriptionUser.textContent = tagline;
     priceUser.textContent = priceValue;
     imgUser.setAttribute("src", picture);
-    imgUser.setAttribute("alt", `profile`);
+    imgUser.setAttribute("alt", name);
     imgUser.setAttribute("class","profile");
 
     function getUserCardDOM() {
