@@ -7,7 +7,7 @@
         const videoPath = `assets/photographers/Sample_Photos/${getUserFirstName(name)}/${video}`;
         const videoElt = document.createElement("video");
         videoElt.setAttribute("src", videoPath);
-        videoElt.setAttribute("aria-label", title);
+        videoElt.setAttribute("aria-label",`video`);
         videoElt.setAttribute("role","link");
         videoElt.setAttribute("tabindex",1);
         return videoElt
@@ -17,7 +17,7 @@
         const pictureElt = document.createElement("img");
         pictureElt.setAttribute("src", picturePath);
         pictureElt.setAttribute("role", "link");
-        pictureElt.setAttribute("alt", title);
+        pictureElt.setAttribute("alt", "image");
         pictureElt.setAttribute("tabindex",1);
         return pictureElt
       }
@@ -40,12 +40,13 @@
         const h3 = document.createElement("h3");
         const heart = document.createElement('i');
         heart.classList.add("fa-solid", "fa-heart");
-        heart.setAttribute("aria-label","heart");
+        heart.setAttribute("aria-label","likes");
         heart.classList.add("heart");
         heart.setAttribute("role","button");
         heart.setAttribute("tabindex",1);
         pLikes.classList.add("nbrOfLikes");
-        pLikes.setAttribute("tabindex",1);
+        divlikes.setAttribute("tabindex",1);
+        divlikes.setAttribute("aria-label",`${likes}`);
         pLikes.textContent = likes;
         h3.textContent = title;
         h3.setAttribute("tabindex",1);

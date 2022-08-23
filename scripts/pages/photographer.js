@@ -48,8 +48,8 @@ async function init2(){
     const links = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]');
     const linksList = Array.from(links).splice(1);
     linksList.forEach( link => link.addEventListener('click', function buildEvent(e){
-        buildDOMLightbox(e.target, linksList);
-        document.removeEventListener("click",buildEvent);
+        console.log(e);
+        buildDOMLightbox(e.target);
     }));
 }
 

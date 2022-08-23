@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -32,7 +32,7 @@
 			<div class="modal" role="dialog">
 				<header class="header_modal">
           <h2>Contactez-moi</h2>
-          <img role="button" src="assets/icons/close_modal.svg" onclick="closeModal()" class="modal_close" alt="Close contact form"/>
+          <img role="button" src="assets/icons/close_modal.svg" onclick="closeModal()" class="modal_close" alt="Close contact form" aria-label="Close contact form"/>
         </header>
 				<form onsubmit="sendModal(event);">
 					<div>
@@ -50,10 +50,10 @@
 				</form>
 			</div>
 		</section>
-    <div role="dialog" class="lightbox" aria-label="image closeup view">
-      <img role="button" src="assets/icons/close_lightbox.svg" class="close_lightbox" alt="Close dialog"/>
-      <img role="button" src="assets/icons/lightbox_previous.svg" alt="previous image" class="lightbox_prev"/>
-      <img role="button" src="assets/icons/lightbox_next.svg" alt="next image" class="lightbox_next"/>
+    <div role="dialog" class="lightbox">
+      <img role="button" src="assets/icons/close_lightbox.svg" class="close_lightbox" alt="Close dialog" aria-label="Close dialog"/>
+      <img role="button" src="assets/icons/lightbox_previous.svg" alt="previous image" class="lightbox_prev" aria-label="Previous media"/>
+      <img role="button" src="assets/icons/lightbox_next.svg" alt="next image" class="lightbox_next" aria-label="Next media"/>
       <figure class="pictureContainer_lightbox">
       </figure>
     </div>

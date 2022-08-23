@@ -17,7 +17,7 @@ function photographerFactory(data) {
     descriptionUser.textContent = tagline;
     priceUser.textContent = priceValue;
     imgUser.setAttribute("src", picture);
-    imgUser.setAttribute("alt", name);
+    imgUser.setAttribute("alt", `profile`);
     imgUser.setAttribute("class","profile");
 
     function getUserCardDOM() {
@@ -32,7 +32,7 @@ function photographerFactory(data) {
         priceUser.setAttribute("tabindex",0);
         link.setAttribute("id","link");
         link.setAttribute("href",`photographer.html?id=${id}`);
-        link.setAttribute('aria-labelledby',`link ${id}`);                  
+        link.setAttribute('aria-label',name);                  
         figcaption.appendChild(localisationUser);
         figcaption.appendChild(descriptionUser);
         figcaption.appendChild(priceUser);
@@ -72,7 +72,6 @@ function photographerFactory(data) {
         rate.classList.add("rate");
         price.classList.add("price_photographer");
         rateDiv.setAttribute("tabindex",0);
-        rateDiv.setAttribute("aria-label",`${name} a ${allLikes} coeurs au totals`);
         heart.setAttribute("aria-label","likes");
         heart.setAttribute("role","img");
         price.textContent = priceValue;       
