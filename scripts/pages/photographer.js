@@ -8,7 +8,7 @@ function displayDataPhotographer(photographers, media)
     const main = document.querySelector("#main");
     const rate = document.querySelector(".rateDiv");
     const picturesSection = document.createElement("section");
-    const select = document.querySelector(".sort-select");
+    const select = document.querySelector("select");
     picturesSection.classList.add("pictures");
     main.insertBefore(picturesSection,rate);
     const dateArray = [];
@@ -38,7 +38,7 @@ function displayDataPhotographer(photographers, media)
 
 async function init2(){
     // Récupère les datas des photographes
-    const selectInput = document.querySelector(".sort-select");
+    const selectInput = document.querySelector("select");
     const photographers = await getPhotographersOrMedia("photographers");
     const media = await getPhotographersOrMedia("media");
     const sortMedia = getSortArray(media, selectInput.value);

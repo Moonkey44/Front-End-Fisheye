@@ -40,19 +40,87 @@
     font-size: 12px;
 }
 
-.sort{
+.custom-sort{
     margin: 20px 100px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 230px;
 }
 
-.sort label{
+.custom-sort label{
     font-weight: bold;
+}
+ 
+ .custom-sort select{
+    display: none;
+} 
+
+.sort-select{
+    display: flex;
+    position: relative;
+    width: 155px;
+    height: 40px;
+    align-items: center;
+    background-color: #901C1C;
+    color: white;
+    border:none;
+    padding-left: 6%;
+    margin-left: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sort-select::after{
+    content: "";
+    transform: rotate(180deg);
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-image: url("../assets/icons/arrow-sort.svg");
+    background-repeat: no-repeat; 
+    top: 11px;
+    right: 18px;
+}
+
+.sort-select.rotate::after{
+    top: 15px;
+    transform: none;
+}
+
+.select_items{
+    background-color: #901C1C;
+    width: 155px;
+    color: white;
+    margin-left: auto;
+    height: 80px;
+    border-radius: 0 0 5px 5px; 
+}
+
+.select_items div{
+    height: 50%;
+    width: 86%;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid white;
+    margin-left: 6%;
+    padding-left: 3%;
+}
+
+.select_items div:hover{
+    cursor: pointer;
+}
+
+
+.select_hide{
+    display:none;
 }
 
 .pictures{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 20px 100px 50px 100px;
-    column-gap: 2%;
+    -moz-column-gap: 2%;
+         column-gap: 2%;
     width: auto;
 }
 
@@ -63,9 +131,7 @@
 
 figure{
     margin: 0;
-    width: auto;
 }
-
 
 .pictures figure img, .pictures figure video{
     width: 100%;
@@ -261,6 +327,8 @@ form textarea{
 .pictureContainer_lightbox{
     display: flex;
     flex-direction: column;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     margin: auto;
     justify-content: center;

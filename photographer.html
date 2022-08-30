@@ -18,9 +18,9 @@
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal();" tabindex="1">Contactez-moi</button>
       </div>
-      <div class="sort">
-        <label for="sort-select" class="sort-label">Trier par</label>
-        <select name="sort" id="sort-select" class="sort-select" onchange="sortPicture()" tabindex="1">
+      <div class="custom-sort">
+        <label for="sort-select" class="sort-label" tabindex="1">Trier par</label>
+        <select name="sort" tabindex="1">
           <option value="popularity" selected>Popularité</option>
           <option value="date">Date</option>
           <option value="title">Titre</option>
@@ -63,5 +63,6 @@
     <script src="scripts/utils/lightbox.js"></script>
     <script src="scripts/pages/index.js"></script>
     <script src="scripts/pages/photographer.js"></script>
+    <script src="scripts/utils/sortDiv.js"></script>
   </body>
 </html>
