@@ -2,9 +2,7 @@
     box-sizing: border-box;
 }
 
-#contact_modal {
-    display: none;
-}
+/* Gestion de l'entête de présentation du photographe */
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -40,6 +38,8 @@
     font-size: 12px;
 }
 
+/* Gestion du select et des options personnalisées */
+
 .custom-sort{
     margin: 20px 100px;
     display: flex;
@@ -68,6 +68,7 @@
     margin-left: auto;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 5;
 }
 
 .sort-select::after{
@@ -87,13 +88,16 @@
     transform: none;
 }
 
+/* Gestion des options du select */
+
 .select_items{
     background-color: #901C1C;
     width: 155px;
     color: white;
     margin-left: auto;
     height: 80px;
-    border-radius: 0 0 5px 5px; 
+    border-radius: 0 0 5px 5px;
+    z-index: 5; 
 }
 
 .select_items div{
@@ -110,10 +114,11 @@
     cursor: pointer;
 }
 
-
 .select_hide{
     display:none;
 }
+
+/* gestion de la section d'affichage des médias du photographe */
 
 .pictures{
     display: grid;
@@ -167,6 +172,8 @@ figcaption p{
     margin-right: 5px;
 }
 
+/*Gestion du petit bloc d'évaluation du photographe */ 
+
 .rate_section{
     width: 260px;
     height: 40px;
@@ -184,11 +191,16 @@ figcaption p{
 .rate_div{
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .fa-heart{
     margin-left: 6px;
+}
+
+/* Gestion de l'affichage de la modale de contact */ 
+#contact_modal {
+    display: none;
 }
 
 #contact_modal{
@@ -212,11 +224,17 @@ figcaption p{
     cursor: pointer;
 }
 
+.send_button{
+    position: absolute;
+    bottom: 3vh;
+}
+
 .modal {
+    position: relative;
     border-radius: 5px;
     background-color: #DB8876;
     width: 40%;
-    height: 580px;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -238,6 +256,8 @@ figcaption p{
     font-size: 40px;
     font-weight: normal;
     text-align: left;
+    height: 5vh;
+    margin: 0;
 }
 
 form {
@@ -245,6 +265,7 @@ form {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+    margin: 8vh 0;
 }
 
 form label {
@@ -257,16 +278,15 @@ form div {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 20px;
 }
 
 form input{
     width: 100%;
-    height: 40px;
+    height: 6vh;
     border: none;
     border-radius: 5px;
     font-size: 20px;
-    margin: 5px 0 5px 0;
+    margin: 1vh 0;
     padding: 10px;
 }
 
@@ -281,6 +301,7 @@ form textarea{
     resize: none;
 }
 
+/* Gestion de la lightbox */
 
 .lightbox{
     display: none;
@@ -299,7 +320,8 @@ form textarea{
     right: 6%;
     width: 4%;
     height: 4%;
-    border: none; color: #901C1C;
+    border: none; 
+    color: #901C1C;
     z-index: 11;
     cursor: pointer;
 }

@@ -7,6 +7,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Gestion de l'entête de la page */
 
 header {
     display: flex;
@@ -26,12 +27,17 @@ h1 {
     margin-left: 100px;
 }
 
+
+/* Gestion de la section contenant les cartes de présentations des photographes */
+
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
 }
+
+/* Gestion des cartes de présentations des photographes */
 
 .photographer_section article{
     justify-self: center;

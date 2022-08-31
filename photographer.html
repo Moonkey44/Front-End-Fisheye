@@ -10,15 +10,15 @@
   </head>
   <body>
     <header>
-      <a href="./index.html" aria-label="back to homepage" tabindex="1">
+      <a href="./index.html" aria-label="Revenir vers la page d'acceuil" tabindex="1">
         <img src="assets/images/logo.png" class="logo" alt="logo fisheye"/>
       </a>
     </header>
-    <main id="main">
-      <div class="photograph-header">
+    <main id="main" aria-label="contenu du photographe">
+      <div class="photograph-header" aria-label="en-tête du photographe">
         <button class="contact_button" onclick="displayModal();" tabindex="1">Contactez-moi</button>
       </div>
-      <div class="custom-sort">
+      <div class="custom-sort" aria-label="Méthode de triage">
         <label for="sort-select" class="sort-label" tabindex="1">Trier par</label>
         <select name="sort" tabindex="1">
           <option value="popularity" selected>Popularité</option>
@@ -26,13 +26,13 @@
           <option value="title">Titre</option>
         </select>
       </div>
-      <div class="rate_section" aria-label="rate"></div>
+      <div class="rate_section" aria-label="évaluation du photographe"></div>
     </main>
     <section id="contact_modal">
 			<div class="modal" role="dialog">
 				<header class="header_modal">
           <h2>Contactez-moi</h2>
-          <img role="button" src="assets/icons/close_modal.svg" onclick="closeModal()" class="modal_close" alt="Close contact form" aria-label="Close contact form"/>
+          <img role="button" src="assets/icons/close_modal.svg" onclick="closeModal()" class="modal_close" alt="Close contact form" aria-label="Fermer la modale"/>
         </header>
 				<form onsubmit="sendModal(event);">
 					<div>
@@ -46,14 +46,14 @@
             <textarea name="message" id="message"></textarea>
             </input>
 					</div>
-          <button type="submit" class="contact_button">Envoyer</button>
+          <button type="submit" class="contact_button send_button">Envoyer</button>
 				</form>
 			</div>
 		</section>
     <div role="dialog" class="lightbox">
-      <img role="button" src="assets/icons/close_lightbox.svg" class="close_lightbox" alt="Close dialog" aria-label="Close dialog"/>
-      <img role="button" src="assets/icons/lightbox_previous.svg" alt="previous image" class="lightbox_prev" aria-label="Previous media"/>
-      <img role="button" src="assets/icons/lightbox_next.svg" alt="next image" class="lightbox_next" aria-label="Next media"/>
+      <img role="button" src="assets/icons/close_lightbox.svg" class="close_lightbox" alt="Ferme la dialog"/>
+      <img role="button" src="assets/icons/lightbox_previous.svg" alt="previous image" class="lightbox_prev" aria-label="Média précédente"/>
+      <img role="button" src="assets/icons/lightbox_next.svg" alt="next image" class="lightbox_next" aria-label="Média suivante"/>
       <figure class="pictureContainer_lightbox">
       </figure>
     </div>
