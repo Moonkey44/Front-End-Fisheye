@@ -10,15 +10,17 @@ function displayModal(){
     const main = document.querySelector("main");
     const header = document.querySelector("header");
     //On configure la lecture de notre lecteur audio
-    main.setAttribute("aria-hidden",true);
-    header.setAttribute("aria-hidden",true);
-    modal.setAttribute("aria-hidden",false);
+    main.setAttribute("aria-hidden","true");
+    header.setAttribute("aria-hidden","true");
+    modal.setAttribute("aria-hidden","false");
     //On rend notre page opaque pour rendre notre modale plus visible
     header.style.opacity = 0.6;
     main.style.opacity = 0.6;
     const firstInput = document.getElementById("first");
-    //On met le focus sur le 1er input de notre modale et on enlève les focus de notre page principale
-    firstInput.focus();
+    //On met le focus sur l'entête de notre modale et on enlève les focus de notre page principale
+    
+    headerModal.children[0].setAttribute("tabindex","0");
+    headerModal.children[0].focus();
     deleteMainFocus();
     //On définis l'index de tabulation de notre bouton de fermeture de la modale
     document.querySelector(".modal_close").setAttribute("tabindex","0");
@@ -44,9 +46,9 @@ function closeModal() {
     const main = document.querySelector("main");
     const header = document.querySelector("header");
     //On reconfigure le lecteur audio à son état d'origine
-    main.setAttribute("aria-hidden",false);
-    header.setAttribute("aria-hidden",false);
-    modal.setAttribute("aria-hidden",true);
+    main.setAttribute("aria-hidden","false");
+    header.setAttribute("aria-hidden","false");
+    modal.setAttribute("aria-hidden","true");
     //Et on remet l'opacité de la page à son état normale
     header.style.opacity = 1;
     main.style.opacity = 1;

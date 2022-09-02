@@ -94,7 +94,7 @@ function closeNewMenu(){
     newSelect.style.borderBottomLeftRadius = "5px";
     newSelect.style.borderBottomRightRadius = "5px";
     //Puis on reset notre page principale
-    resetMainPage();
+    resetMedia(oldSelect.value);
     //Enfin on enlève les évènements de notre select perso appelé lors de l'ouverture de celui-ci
     newSelect.removeEventListener("click",closeNewMenu);
     newSelect.removeEventListener("keyup",closeNewMenu);

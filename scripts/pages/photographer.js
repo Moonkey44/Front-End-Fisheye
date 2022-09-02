@@ -60,9 +60,10 @@ async function init2(){
     const selectInput = document.querySelector("select");
     const photographers = await getPhotographersOrMedia("photographers");
     const media = await getPhotographersOrMedia("media");
-    //On appelle notre fonction de triage en lui passant en argument notre tableau d'objet et la valeur de notre select
-    //Cette fonction nous retournera le tableau de média trier en fonction du choix de l'utilisateur
-    const sortMedia = getSortArray(media, selectInput.value);
+    const reload = false;
+    //On appelle notre fonction de triage en lui passant en argument notre tableau d'objet media, la valeur de notre select et en précisant
+    //notre reload car cette une initialisation de la page, cette fonction nous retournera le tableau de média trier en fonction du choix de l'utilisateur
+    const sortMedia = getSortArray(media, selectInput.value,reload);
     //Puis on éxecute notre fonction d'affichage des médias triés et du photographe séléctionné en les passants en argument 
     displayDataPhotographer(photographers, sortMedia);
     // On appelle nos écouteurs d'événements click et entrer pour chaque coeurs dans le DOM 
@@ -86,38 +87,65 @@ async function init2(){
     });
 }
 
-//
-function getSortArray(media,select){
+//Si reload est a true alors on trie notre tableau d'élément article
+function getSortArray(media,select, reload){
     switch(select){
         case "popularity" :
             //On retourne le tableau trier en comparant les propriétés likes de chaque élément
             //Si b - a est positif alors b passe devant a sinon si il est négatif alors b reste à sa place
-            return media.sort((a,b) => b.likes - a.likes);
+            if(reload){    
+                //Ici on trie en convertissant en entier chaque élément enfant "p" de nos articles
+                return media.sort((a,b) => parseInt(b.children[0].children[1].children[1].children[0].textContent) - parseInt(a.children[0].children[1].children[1].children[0].textContent));
+            } else {
+                return media.sort((a,b) => b.likes - a.likes);
+            }
         case "date" : 
             //On retourne le tableau trier en comparant les propriétés dates de chaque élément
             //même chose qu'avant sauf que l'on convertit ses propriétés string en type date
             //puis la méthode sort les convertits en valeur ASCII et les comparent entre elle
-            return media.sort((a,b) => new Date(b.date) - new Date(a.date));
+            if(reload){
+                //Ici on trie en convertissant en date chaque valeur de l'attribut data de l'élément enfant "figcaption" de nos articles
+                return media.sort((a,b) => new Date(b.children[0].children[1].getAttribute("data-date-of-picture")) - new Date(a.children[0].children[1].getAttribute("data-date-of-picture")));
+            } else {
+                return media.sort((a,b) => new Date(b.date) - new Date(a.date));
+            }
         case "title" :
             //On retourne le tableau trier en comparant les propriétés title de chaque élément
-            //en utilisant la méthode localeCompare qui renvoie un nombre indiquant si la chaîne de caractère courante
-            //(ici a) se situe avant, après ou est la même que la chaîne passé en paramètre (b);
-            return media.sort((a,b) =>{
-                return a.title.localeCompare(b.title);
-            });
+            //en retournant la valeur de la méthode localeCompare qui renvoie un nombre indiquant si la chaîne de caractère courante
+            //(ici a) se situe avant (-1), après (1) ou est la même (0) que la chaîne passé en paramètre (b)
+            if(reload){
+                //Ici on trie en comparant la chaîne de caractère de chaque élément enfant "h3" de nos articles 
+                return media.sort((a,b) =>{
+                    return a.children[0].children[1].children[0].textContent.localeCompare(b.children[0].children[1].children[0].textContent);
+                });
+            } else {
+                return media.sort((a,b) =>{
+                    return a.title.localeCompare(b.title);
+                });
+            }
+            
     }
 }
-//cette fonction nous permet de supprimer tout les noeuds dans le DOM de la section picture
-function removePictures(){
+//cette fonction nous permet de suprimer tout les articles de la page et d'afficher ces mêmes articles triés
+function reset(sortArticleArray){
     const sectionPicture = document.querySelector(".pictures");
-    sectionPicture.remove();
+    const article = document.querySelectorAll("article");
+    article.forEach(article => {
+        article.remove();
+    });
+    for(i=0; i< sortArticleArray.length; i++){
+        sectionPicture.appendChild(sortArticleArray[i]);
+    }
 }
-//cette fonction sera éxécuté a la fermeture du select
-function resetMainPage(){
-    //On supprime les médias courants
-    removePictures();
-    //On réinitiale l'affichage de nos données
-    init2();
+//cette fonction sera éxécuté à la fermeture du select en récupérant sa valeur
+function resetMedia(select){
+    const reload = true;
+    // On récupère un tableau de nos élements article pour pouvoir l'utilisé dans la fonction de triage
+    const articleArray = Array.from(document.querySelectorAll("article"));
+    //On le passe en argument, ainsi que la valeur de la selection et en précisant que c'est bien un reload de la section média
+    const sortArray = getSortArray(articleArray,select,reload);
+    //Il nous reste plus qu'à éxécuter la fonction reset en passant en argument le tableau trié retourné
+    reset(sortArray);
 }
 
 //Lors de l'appel de cette événement on ajoute le like dans le DOM

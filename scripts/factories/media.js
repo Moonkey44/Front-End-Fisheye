@@ -52,6 +52,9 @@
         const pLikes = document.createElement('p');
         const h3 = document.createElement("h3");
         const heart = document.createElement('i');
+        //On met un dataset de la date de l'image dans la description de celle-ci
+        //pour pouvoir faire le triage post init (reload)  
+        figcaption.dataset.dateOfPicture = date;
         heart.classList.add("fa-solid", "fa-heart");
         heart.setAttribute("aria-label","likes");
         heart.classList.add("heart");

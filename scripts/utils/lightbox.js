@@ -20,29 +20,30 @@ function buildDOMLightbox(element){
     //et on l'ajoute à notre DOM 
     if(element.src.match(/\.jpg/)){
         const image = document.createElement("img");
-        image.setAttribute("tabindex","0");
+        image.setAttribute("tabindex","1");
         image.setAttribute('src',element.getAttribute('src'));
         image.setAttribute('alt', `${element.getAttribute('alt')} image`);
         image.classList.add("media_lightbox");
+        image.focus();
         figure.appendChild(image);
     }
     //Sinon l'élément sélectionné correspond à une vidéo et on construit notre nouvelle élément
     //et on l'ajoute a notre DOM
     else{
         const video = document.createElement("video");
-        video.setAttribute("tabindex","0");
+        video.setAttribute("tabindex","1");
         video.setAttribute('src',element.getAttribute("src"));
         video.setAttribute('aria-label', `${element.getAttribute("aria-label")}`);
         video.setAttribute("controls", "true");
         video.classList.add("media_lightbox");
+        video.focus();
         figure.appendChild(video);
     }
     //On met le focus sur notre media lors de l'ouverture de la lightbox
-    figure.focus();
     //On défini le contenu de la description de notre média grâce au propriété de l'élément sélectionné
     h3.textContent = element.nextElementSibling.children[0].textContent;
     //puis on configure le reste des tabindex et on finis la construction du DOM de la lighbox
-    h3.setAttribute("tabindex","0");
+    h3.setAttribute("tabindex","1");
     close.setAttribute("tabindex","0");
     arrowLeft.setAttribute("tabindex","0");
     arrowRight.setAttribute("tabindex","0");
@@ -116,9 +117,9 @@ function closeLightbox(){
     const arrowLeft = document.querySelector(".lightbox_prev");
     const arrowRight = document.querySelector(".lightbox_next");
     //On configure l'utilisation du lecteur audio
-    main.setAttribute("aria-hidden",false);
-    header.setAttribute("aria-hidden",false);
-    lightbox.setAttribute("aria-hidden",true);
+    main.setAttribute("aria-hidden","false");
+    header.setAttribute("aria-hidden","false");
+    lightbox.setAttribute("aria-hidden","true");
     document.querySelector(".close_lightbox").removeAttribute("tabindex");
     //On supprime les tabindex de notre lightbox
     arrowLeft.removeAttribute("tabindex");
@@ -167,7 +168,6 @@ function loadNewMedia(counter){
             newImg.setAttribute("tabindex",1);
             newImg.classList.add("media_lightbox");
             h3.textContent = linksList[i+counter].nextElementSibling.children[0].textContent;
-            h3.setAttribute("tabindex",1);
             //et on remplace le media courant par notre nouvelle image et on lui met le focus
             figure.replaceChild(newImg,mediaCurrent);
             newImg.focus();
@@ -181,9 +181,9 @@ function loadNewMedia(counter){
             newVideo.setAttribute("src",linksList[i+counter].src);
             newVideo.setAttribute("aria-label",linksList[i+counter].getAttribute("aria-label"));
             newVideo.setAttribute("controls", "true");
-            newVideo.setAttribute("tabindex",0);
+            newVideo.setAttribute("tabindex","1");
             newVideo.classList.add("media_lightbox");
-            figcaption.textContent = linksList[i+counter].nextElementSibling.children[0].textContent;
+            h3.textContent = linksList[i+counter].nextElementSibling.children[0].textContent;
             //et on remplace le media courant par notre nouvelle vidéo et on lui met le focus
             figure.replaceChild(newVideo,mediaCurrent);
             newVideo.focus();
