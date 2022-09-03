@@ -16,7 +16,7 @@
     </header>
     <main id="main" aria-label="contenu du photographe">
       <section class="photograph-header" aria-label="en-tête du photographe" tabindex="1">
-        <button class="contact_button" id="open-modal" onclick="displayModal(event);" tabindex="1">Contactez-moi</button>
+        <button class="contact_button" id="open-modal" onclick="displayModal();" tabindex="1">Contactez-moi</button>
       </section>
       <section class="custom-sort" aria-label="Méthode de triage" tabindex="1">
         <label for="sort-select" id="sort-select" class="sort-label">Trier par</label>
@@ -37,7 +37,7 @@
 				<form onsubmit="sendModal(event);">
 					<div>
 						<label for="first">Prénom</label>
-						<input type="text" name="first" id="first" required/>
+						<input type="text" name="first" id="first" required>
             <label for="last">Nom</label>
             <input type="text" name="last" id="last" required/>
             <label for="mail">Email</label>

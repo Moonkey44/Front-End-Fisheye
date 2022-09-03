@@ -1,5 +1,6 @@
-function displayModal(e){
+function displayModal(){
     //On construit notre modale de contact
+    const close = document.querySelector(".modal_close")
     const modal = document.getElementById("contact_modal");
     const nameUser = document.querySelector(".name_user");
     const headerModal = document.querySelector(".header_modal");
@@ -12,20 +13,19 @@ function displayModal(e){
     //On rend notre page opaque pour rendre notre modale plus visible
     header.style.opacity = 0.6;
     main.style.opacity = 0.6;
-    const firstInput = document.getElementById("first");
     //On met le focus sur le bouton close de notre modale et on enlève les focus de notre page principale
     deleteMainFocus();
     //On définis l'index de tabulation de notre bouton de fermeture de la modale
-    document.querySelector(".modal_close").setAttribute("tabindex","1");
-    document.querySelector(".modal_close").focus();
+    close.setAttribute("tabindex","1");
+    close.focus();
     //On définis nos évenement de fermeture de la modale - keyup + Enter
     document.addEventListener("keyup",function escapeKeyUp(e){
         if(e.key === "Escape"){
             closeModal();               
-            this.removeEventListener("keyup",escapeKeyUp);
+            this.removeEventListener("key",escapeKeyUp);
         }
     });
-    document.querySelector(".modal_close").addEventListener("keyup",function enterKeyUp(e){
+    close.addEventListener("keydown",function enterKeyUp(e){
         if(e.key === "Enter"){
             closeModal();
             this.removeEventListener("keyup",enterKeyUp);

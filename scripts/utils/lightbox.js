@@ -24,8 +24,8 @@ function buildDOMLightbox(element){
         image.setAttribute('src',element.getAttribute('src'));
         image.setAttribute('alt', `${element.getAttribute('alt')} image`);
         image.classList.add("media_lightbox");
-        image.focus();
         figure.appendChild(image);
+        image.focus();
     }
     //Sinon l'élément sélectionné correspond à une vidéo et on construit notre nouvelle élément
     //et on l'ajoute a notre DOM
@@ -36,8 +36,8 @@ function buildDOMLightbox(element){
         video.setAttribute('aria-label', `${element.getAttribute("aria-label")}`);
         video.setAttribute("controls", "true");
         video.classList.add("media_lightbox");
-        video.focus();
         figure.appendChild(video);
+        video.focus();
     }
     //On met le focus sur notre media lors de l'ouverture de la lightbox
     //On défini le contenu de la description de notre média grâce au propriété de l'élément sélectionné
