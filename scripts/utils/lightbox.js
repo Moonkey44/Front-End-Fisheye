@@ -41,7 +41,6 @@ function buildDOMLightbox(element){
     }
     //On défini le contenu de la description de notre média grâce au propriété de l'élément sélectionné
     h3.textContent = element.nextElementSibling.children[0].textContent;
-    h3.setAttribute("id","dialog");
     //puis on configure le reste des tabindex et on finis la construction du DOM de la lighbox
     h3.setAttribute("tabindex","1");
     close.setAttribute("tabindex","0");
@@ -64,7 +63,6 @@ function buildDOMLightbox(element){
 
 //ici, on configure l'évènement lors du relachement de la touche entrée
 function enterEvent(e){
-    console.log(e);
     if(e.key === "Enter"){
         //On appelle les fonctions correspondant à l'élément séléctioné
         switch(e.target.alt){

@@ -18,8 +18,7 @@ function displayDataPhotographer(photographers, medias)
     const select = document.querySelector("select");
     picturesSection.classList.add("pictures");
     main.insertBefore(picturesSection,rate);
-    //On définis un tableau de date et une variable qui va contenir tous les likes du photographe
-    const dateArray = [];
+    //On définis une variable qui va contenir tous les likes du photographe
     let allLikes = 0;
     //On boucle sur le tableau d'objet pour récupérer les données du photographe sélectionné dans la page d'acceuil
     photographers.forEach((photographer) => { 
@@ -35,8 +34,6 @@ function displayDataPhotographer(photographers, medias)
                     const mediaModel = mediaFactory(media,photographerModel.name);
                     //on ajoute le nombre total de likes de chaque média correspondant
                     allLikes += mediaModel.likes;
-                    //Et on met la date de chaque média correspondant dans le tableau de date
-                    dateArray.push(mediaModel.date);
                     //On construit notre article et on le place dans le DOM
                     picturesSection.appendChild(mediaModel.getPictureCardDOM());
                 }
@@ -143,9 +140,16 @@ function resetMedia(select){
     // On récupère un tableau de nos élements article pour pouvoir l'utilisé dans la fonction de triage
     const articleArray = Array.from(document.querySelectorAll("article"));
     //On le passe en argument, ainsi que la valeur de la selection et en précisant que c'est bien un reload de la section média
-    const sortArray = getSortArray(articleArray,select,reload);
+    const sortMediaArray = getSortArray(articleArray,select,reload);
+    //Et on affiche la date de chaque média dans la console via leurs attributs data
+    //Si la valeur de l'élément select est date
+    if(select === "date"){
+        sortMediaArray.forEach(media => {
+            console.log(media.children[0].children[1].getAttribute("data-date-of-picture"));
+        });
+    }
     //Il nous reste plus qu'à éxécuter la fonction reset en passant en argument le tableau trié retourné
-    reset(sortArray);
+    reset(sortMediaArray);
 }
 
 //Lors de l'appel de cette événement on ajoute le like dans le DOM
