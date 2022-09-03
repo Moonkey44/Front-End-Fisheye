@@ -9,12 +9,12 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
+    <header aria-hidden="false">
       <a href="./index.html" aria-label="Revenir vers homepage" tabindex="1">
         <img src="assets/images/logo.png" class="logo" alt="logo fisheye"/>
       </a>
     </header>
-    <main id="main" aria-label="contenu du photographe">
+    <main id="main" aria-label="contenu du photographe" aria-hidden="false">
       <section class="photograph-header" aria-label="en-tête du photographe" tabindex="1">
         <button class="contact_button" id="open-modal" onclick="displayModal();" tabindex="1">Contactez-moi</button>
       </section>
@@ -28,7 +28,7 @@
       </section>
       <section class="rate_section" aria-label="évaluation du photographe"></section>
     </main>
-    <section id="contact_modal">
+    <section id="contact_modal" aria-hidden="true">
 			<div class="modal" role="dialog" aria-controls="open-modal" aria-labelledby="contact">
 				<header class="header_modal">
           <h2 id="contact">Contactez-moi</h2>
@@ -50,7 +50,7 @@
 				</form>
 			</div>
 		</section>
-    <div role="dialog" class="lightbox">
+    <div role="dialog" class="lightbox" aria-labelledby="dialog" aria-hidden="true">
       <img role="button" src="assets/icons/close_lightbox.svg" class="close_lightbox" alt="Ferme la dialog"/>
       <img role="button" src="assets/icons/lightbox_previous.svg" alt="previous image" class="lightbox_prev" aria-label="Média précédente"/>
       <img role="button" src="assets/icons/lightbox_next.svg" alt="next image" class="lightbox_next" aria-label="Média suivante"/>

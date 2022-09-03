@@ -76,10 +76,10 @@ async function init2(){
     //On gère nos écouteurs d'évènements click et entrer sur chaque élément de notre liste
     //Si les évènements sont activés alors on éxécute notre fonction d'affichage de la lightbox en lui passant en argumant l'élément sélectionné 
     linksList.forEach( link =>{
-        link.addEventListener('click', function buildEvent(e){
+        link.addEventListener("click", function buildEvent(e){
             buildDOMLightbox(e.target);
         })
-        link.addEventListener('keyup',function(e){
+        link.addEventListener("keyup",function(e){
             if(e.key === "Enter"){
                 buildDOMLightbox(e.target);
             }

@@ -11,6 +11,7 @@ function buildDOMLightbox(element){
     const h3= document.createElement("h3");
     h3.classList.add("media_h3");
     figcaption.classList.add('figcaption_lightbox');
+    //On configure le masquage du lecteur audio
     main.setAttribute("aria-hidden","true");
     header.setAttribute("aria-hidden","true");
     lightbox.setAttribute("aria-hidden","false");
@@ -25,7 +26,6 @@ function buildDOMLightbox(element){
         image.setAttribute('alt', `${element.getAttribute('alt')} image`);
         image.classList.add("media_lightbox");
         figure.appendChild(image);
-        image.focus();
     }
     //Sinon l'élément sélectionné correspond à une vidéo et on construit notre nouvelle élément
     //et on l'ajoute a notre DOM
@@ -39,9 +39,9 @@ function buildDOMLightbox(element){
         figure.appendChild(video);
         video.focus();
     }
-    //On met le focus sur notre media lors de l'ouverture de la lightbox
     //On défini le contenu de la description de notre média grâce au propriété de l'élément sélectionné
     h3.textContent = element.nextElementSibling.children[0].textContent;
+    h3.setAttribute("id","dialog");
     //puis on configure le reste des tabindex et on finis la construction du DOM de la lighbox
     h3.setAttribute("tabindex","1");
     close.setAttribute("tabindex","0");
@@ -58,6 +58,8 @@ function buildDOMLightbox(element){
     arrowRight.addEventListener("keyup",enterEvent);
     arrowRight.addEventListener("click",nextEvent);
     close.addEventListener("click",closeLightbox);
+    //Enfin on met le focus sur notre media lors de l'ouverture de la lightbox
+    document.querySelector(".media_lightbox").focus();
 }
 
 //ici, on configure l'évènement lors du relachement de la touche entrée
@@ -116,7 +118,7 @@ function closeLightbox(){
     const header = document.querySelector("header");
     const arrowLeft = document.querySelector(".lightbox_prev");
     const arrowRight = document.querySelector(".lightbox_next");
-    //On configure l'utilisation du lecteur audio
+    //On configure le masquage du lecteur audio
     main.setAttribute("aria-hidden","false");
     header.setAttribute("aria-hidden","false");
     lightbox.setAttribute("aria-hidden","true");

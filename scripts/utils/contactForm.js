@@ -10,6 +10,10 @@ function displayModal(){
 	modal.style.display = "block";
     const main = document.querySelector("main");
     const header = document.querySelector("header");
+    //On configure le masquage du lecteur audio
+    main.setAttribute("aria-hidden","true");
+    header.setAttribute("aria-hidden","true");
+    modal.setAttribute("aria-hidden","false");
     //On rend notre page opaque pour rendre notre modale plus visible
     header.style.opacity = 0.6;
     main.style.opacity = 0.6;
@@ -39,6 +43,10 @@ function closeModal() {
     modal.style.display = "none";       
     const main = document.querySelector("main");
     const header = document.querySelector("header");
+    //On configure le masquage du lecteur audio
+    main.setAttribute("aria-hidden","false");
+    header.setAttribute("aria-hidden","false");
+    modal.setAttribute("aria-hidden","true");
     //Et on remet l'opacité de la page à son état normale
     header.style.opacity = 1;
     main.style.opacity = 1;
