@@ -4,10 +4,11 @@ const oldSelect = document.querySelector("select");
 const newSelect = document.createElement("div");
 const newMenu = document.createElement("div");
 newMenu.classList.add("select_items","select_hide");
-newSelect.setAttribute("role","select");
-newSelect.setAttribute("aria-label",`${newSelect.innerHTML} select`);
-newSelect.setAttribute("aria-labelledby", "sort-select");
-newSelect.setAttribute("tabindex",1);
+newSelect.setAttribute("role","menu");
+newSelect.setAttribute("aria-haspopup","true");
+newSelect.setAttribute("aria-expanded","false");
+newSelect.setAttribute("id","sort-select");
+newSelect.setAttribute("tabindex","1");
 newSelect.classList.add("sort-select");
 //le contenu de mon select personnalisé contiendra le contenu de l'option sélectionné dans l'élément select caché via son index
 newSelect.textContent = oldSelect.options[oldSelect.selectedIndex].textContent;
@@ -17,8 +18,9 @@ selectDiv.appendChild(newSelect);
 for(i=1;i < oldSelect.length; i++){
     const newOption = document.createElement("div");
     newOption.innerHTML = oldSelect.options[i].innerHTML;
-    newOption.setAttribute("role","option");
-    newOption.setAttribute("aria-label",`${newOption.innerHTML} option`);
+    newOption.setAttribute("role","menuitem");
+    newOption.setAttribute("aria-label",`${newOption.innerHTML}`);
+    newOption.setAttribute("aria-expanded","true");
     newMenu.appendChild(newOption);
     newOption.addEventListener("click",selectItems);
     newOption.addEventListener("keyup",function(e){
@@ -43,31 +45,37 @@ newSelect.addEventListener("keyup",function(e){
 });
 function selectItems(e){
     //on boucle sur notre élément select caché
-    for(i=0;i < oldSelect.length;i++){
+    for(i=0;i <= oldSelect.length;i++){
         //Si notre option perso séléctionné correspond à une des options de l'élément select caché
         if(oldSelect.options[i].innerHTML === e.target.innerHTML){
             //Alors on change la valeur de l'index sélectionné du select caché avec la valeur de l'index de son option sélectionner  
             oldSelect.selectedIndex = oldSelect.options[i].index;
             //Ensuite on change le contenu de l'option sélectionné perso par le contenu de notre select perso
             e.target.innerHTML = newSelect.innerHTML;
-            //Enfin on change le contenu de notre select perso par le contenu de l'élément sélectionné
+            e.target.setAttribute("aria-label",`${newSelect.innerHTML}`);
+            //Enfin on change le contenu de notre select perso par le contenu de l'élément select
             newSelect.innerHTML = oldSelect.options[i].innerHTML;
             break;
         }
     } 
-    closeNewMenu();    
+    closeNewMenu();
+    newSelect.focus();
 }
 
 function openNewMenu(e){
     //on appel nos options dans une constante 
-    const newOptions = document.querySelectorAll("div[role=option]");
+    const newOptions = document.querySelectorAll("div[role=menuitem]");
+    newSelect.setAttribute("aria-expanded","true");
+    newSelect.setAttribute("aria-haspopup","false");
+    newSelect.setAttribute("role","menuitem");
+    newSelect.setAttribute("aria-label",`${newSelect.innerHTML} sélectionné`);
+    newSelect.removeAttribute("id");
     //On enlève le focus de notre page et on la reconfigure sur notre select et option perso
     deleteMainFocus();
     newSelect.setAttribute("tabindex","1");
     for(i=0;i < newOptions.length; i++){
         newOptions[i].setAttribute("tabindex","1");
     }
-    newSelect.setAttribute("role","options");
     //On enlève le focus de notre select et on lui rajoute pour pouvoir le selectionner avec le tabindex
     //Si l'utilisateur c'est tromper
     newSelect.blur();
@@ -82,11 +90,15 @@ function openNewMenu(e){
 
 function closeNewMenu(){
     //On active le focus de notre page et on l'enlève de nos options perso 
+    newSelect.setAttribute("role","menu");
+    newSelect.setAttribute("aria-expanded","false");
+    newSelect.setAttribute("aria-haspopup","true");
+    newSelect.setAttribute("id","sort-select");
+    newSelect.setAttribute("aria-label",`${newSelect.innerHTML} sélectionné`);
     activeMainFocus();
-    document.querySelectorAll("div[role=option]").forEach(option => {
+    document.querySelectorAll("div[role=menuitem]").forEach(option => {
         option.setAttribute("tabindex","-1");
     });
-    newSelect.setAttribute("role","select");
     //On met notre pseudo élément de notre select perso à sa position initiale 
     newSelect.classList.remove("rotate");
     //Et on cache notre nouveau menu perso et on reconfigure le style de notre select perso a sa valeur intiale

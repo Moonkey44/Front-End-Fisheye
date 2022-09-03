@@ -10,28 +10,28 @@
   </head>
   <body>
     <header>
-      <a href="./index.html" aria-label="Revenir vers la page d'acceuil" tabindex="1">
+      <a href="./index.html" aria-label="Revenir vers homepage" tabindex="1">
         <img src="assets/images/logo.png" class="logo" alt="logo fisheye"/>
       </a>
     </header>
     <main id="main" aria-label="contenu du photographe">
-      <div class="photograph-header" aria-label="en-tête du photographe">
-        <button class="contact_button" onclick="displayModal();" tabindex="1">Contactez-moi</button>
-      </div>
-      <div class="custom-sort" aria-label="Méthode de triage">
-        <label for="sort-select" class="sort-label" tabindex="1">Trier par</label>
+      <section class="photograph-header" aria-label="en-tête du photographe" tabindex="1">
+        <button class="contact_button" id="open-modal" onclick="displayModal(event);" tabindex="1">Contactez-moi</button>
+      </section>
+      <section class="custom-sort" aria-label="Méthode de triage" tabindex="1">
+        <label for="sort-select" id="sort-select" class="sort-label">Trier par</label>
         <select name="sort" tabindex="1">
           <option value="popularity" selected>Popularité</option>
           <option value="date">Date</option>
           <option value="title">Titre</option>
         </select>
-      </div>
-      <div class="rate_section" aria-label="évaluation du photographe"></div>
+      </section>
+      <section class="rate_section" aria-label="évaluation du photographe"></section>
     </main>
     <section id="contact_modal">
-			<div class="modal" role="dialog">
+			<div class="modal" role="dialog" aria-controls="open-modal" aria-labelledby="contact">
 				<header class="header_modal">
-          <h2>Contactez-moi</h2>
+          <h2 id="contact">Contactez-moi</h2>
           <img role="button" src="assets/icons/close_modal.svg" onclick="closeModal()" class="modal_close" alt="Close contact form" aria-label="Fermer la modale"/>
         </header>
 				<form onsubmit="sendModal(event);">

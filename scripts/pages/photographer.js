@@ -167,17 +167,22 @@ function enterLikeEvent(e){
 }
 
 function addlikeMedia(event){
+    const rate = document.querySelector(".rate");
     //On récupère le like total de photographe on le convertit en entier et on l'incrémente.
-    const rate = parseInt(document.querySelector(".rate").textContent)+1;
+    const intRate = parseInt(rate.textContent)+1;
     //On reconvertit le résultat en chaîne de caractère et on le modifie dans le DOM
-    document.querySelector(".rate").textContent = rate.toString();
-    //Nous faisons la même chose avec l'élément situé à coter du coeur séléectionné  
+    rate.textContent = intRate.toString();
+    //Nous faisons la même chose avec l'élément situé à coter du coeur séléctionné  
     const nbrOfLikes = parseInt(event.target.parentNode.children[0].textContent);
     const addLike = nbrOfLikes + 1;
     event.target.parentNode.children[0].textContent = addLike.toString();
-    //console.log(event);
+    //On fait aussi la mise à jour de l'accessibilité
+    event.target.parentNode.setAttribute("aria-label",`${event.target.parentNode.children[0].textContent} like`);
+    event.target.setAttribute("aria-label","like sélectionné");
     //Puis on enlève le curseur pointeur pour indiquer à l'utilisateur qu'il ne peut plus liker
     event.target.style.cursor = "auto";
+    event.target.blur();
+    event.target.parentElement.focus();
 }
 
 //il nous reste plus qu'a éxécuté la fonction d'initialisation de la page media

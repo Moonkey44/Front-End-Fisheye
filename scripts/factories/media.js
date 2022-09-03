@@ -56,13 +56,15 @@
         //pour pouvoir faire le triage post init (reload)  
         figcaption.dataset.dateOfPicture = date;
         heart.classList.add("fa-solid", "fa-heart");
-        heart.setAttribute("aria-label","likes");
+        heart.setAttribute("aria-label","like");
+        heart.setAttribute("id","heart");
         heart.classList.add("heart");
         heart.setAttribute("role","button");
         heart.setAttribute("tabindex",1);
         pLikes.classList.add("nbrOfLikes");
+        pLikes.setAttribute("aria-controls","heart");
         divlikes.setAttribute("tabindex",1);
-        divlikes.setAttribute("aria-label",`${likes} likes`);
+        divlikes.setAttribute("aria-label",`${likes} like`);
         pLikes.textContent = likes;
         h3.textContent = title;
         h3.setAttribute("tabindex",1);
