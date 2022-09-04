@@ -19,7 +19,9 @@ function displayDataPhotographer(photographers, medias)
     picturesSection.classList.add("pictures");
     main.insertBefore(picturesSection,rate);
     //On définis une variable qui va contenir tous les likes du photographe
+    //et une variable qui va s'incrémenter à chaque média définis
     let allLikes = 0;
+    let indexMedia = 0;
     //On boucle sur le tableau d'objet pour récupérer les données du photographe sélectionné dans la page d'acceuil
     photographers.forEach((photographer) => { 
         //Si l'id du photographe passé en paramètre correspond à une des id du tableau d'objet 
@@ -35,7 +37,8 @@ function displayDataPhotographer(photographers, medias)
                     //on ajoute le nombre total de likes de chaque média correspondant
                     allLikes += mediaModel.likes;
                     //On construit notre article et on le place dans le DOM
-                    picturesSection.appendChild(mediaModel.getPictureCardDOM());
+                    picturesSection.appendChild(mediaModel.getPictureCardDOM(indexMedia));
+                    indexMedia++;
                 }
             })
             //Si la variable d'affichage est affecté de 1 alors on affiche l'entête de la page et son évaluation correspondant
@@ -186,7 +189,7 @@ function addlikeMedia(event){
     //Puis on enlève le curseur pointeur pour indiquer à l'utilisateur qu'il ne peut plus liker
     event.target.style.cursor = "auto";
     event.target.blur();
-    event.target.parentElement.focus();
+    event.target.focus();
 }
 
 //il nous reste plus qu'a éxécuté la fonction d'initialisation de la page media

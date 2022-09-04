@@ -7,7 +7,7 @@ newMenu.classList.add("select_items","select_hide");
 newSelect.setAttribute("role","menu");
 newSelect.setAttribute("aria-haspopup","true");
 newSelect.setAttribute("aria-expanded","false");
-newSelect.setAttribute("id","sort-select");
+newSelect.setAttribute("aria-labelledby","sort-select");
 newSelect.setAttribute("tabindex","1");
 newSelect.classList.add("sort-select");
 //le contenu de mon select personnalisé contiendra le contenu de l'option sélectionné dans l'élément select caché via son index
@@ -67,9 +67,10 @@ function openNewMenu(e){
     const newOptions = document.querySelectorAll("div[role=menuitem]");
     newSelect.setAttribute("aria-expanded","true");
     newSelect.setAttribute("aria-haspopup","false");
+    newSelect.removeAttribute("aria-labelledby");
     newSelect.setAttribute("role","menuitem");
     newSelect.setAttribute("aria-label",`${newSelect.innerHTML} sélectionné`);
-    newSelect.removeAttribute("id");
+    newSelect.removeAttribute("labelledby");
     //On enlève le focus de notre page et on la reconfigure sur notre select et option perso
     deleteMainFocus();
     newSelect.setAttribute("tabindex","1");
@@ -93,7 +94,6 @@ function closeNewMenu(){
     newSelect.setAttribute("role","menu");
     newSelect.setAttribute("aria-expanded","false");
     newSelect.setAttribute("aria-haspopup","true");
-    newSelect.setAttribute("id","sort-select");
     newSelect.setAttribute("aria-label",`${newSelect.innerHTML} sélectionné`);
     activeMainFocus();
     document.querySelectorAll("div[role=menuitem]").forEach(option => {

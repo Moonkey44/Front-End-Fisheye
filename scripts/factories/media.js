@@ -42,7 +42,7 @@
       }
     }
 
-    function getPictureCardDOM(){
+    function getPictureCardDOM(index){
         //on construit les élements constituants notre média à affiché
         //ainsi que son accessibilité et leurs tabindex
         const article = document.createElement("article");
@@ -57,12 +57,12 @@
         figcaption.dataset.dateOfPicture = date;
         heart.classList.add("fa-solid", "fa-heart");
         heart.setAttribute("aria-label","like");
-        heart.setAttribute("id","heart");
+        heart.setAttribute("id",`like${index}`);
+        pLikes.setAttribute("aria-controls",`like${index}`);
         heart.classList.add("heart");
         heart.setAttribute("role","button");
         heart.setAttribute("tabindex",1);
         pLikes.classList.add("nbrOfLikes");
-        pLikes.setAttribute("aria-controls","heart");
         divlikes.setAttribute("tabindex",1);
         divlikes.setAttribute("aria-label",`${likes} like`);
         pLikes.textContent = likes;

@@ -87,7 +87,7 @@ function photographerFactory(data) {
         rate.classList.add("rate");
         price.classList.add("price_photographer");
         rateDiv.setAttribute("tabindex",0);
-        heart.setAttribute("aria-label","likes");
+        heart.setAttribute("aria-label","like au total");
         heart.setAttribute("role","img");
         price.textContent = priceValue;       
         price.setAttribute("tabindex",0);
