@@ -7,12 +7,12 @@ newMenu.classList.add("select_items","select_hide");
 newSelect.setAttribute("role","menu");
 newSelect.setAttribute("aria-haspopup","true");
 newSelect.setAttribute("aria-expanded","false");
-newSelect.setAttribute("aria-labelledby","sort-select");
 newSelect.setAttribute("tabindex","1");
 newSelect.classList.add("sort-select");
 //le contenu de mon select personnalisé contiendra le contenu de l'option sélectionné dans l'élément select caché via son index
 newSelect.textContent = oldSelect.options[oldSelect.selectedIndex].textContent;
 selectDiv.appendChild(newSelect);
+newSelect.setAttribute("aria-label",`${newSelect.innerHTML} sélectionné`);
 //On boucle pour copier les options de l'élément select caché dans mon nouveau menu personnalisé
 //et on ajoute les évènements sur ses nouveaux options
 for(i=1;i < oldSelect.length; i++){
@@ -69,7 +69,7 @@ function openNewMenu(e){
     newSelect.setAttribute("aria-haspopup","false");
     newSelect.removeAttribute("aria-labelledby");
     newSelect.setAttribute("role","menuitem");
-    newSelect.setAttribute("aria-label",`${newSelect.innerHTML} sélectionné`);
+    newSelect.setAttribute("aria-label",`${newSelect.innerHTML}`);
     newSelect.removeAttribute("labelledby");
     //On enlève le focus de notre page et on la reconfigure sur notre select et option perso
     deleteMainFocus();
