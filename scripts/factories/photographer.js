@@ -22,7 +22,7 @@ function photographerFactory(data) {
     descriptionUser.textContent = tagline;
     priceUser.textContent = priceValue;
     imgUser.setAttribute("src", picture);
-    imgUser.setAttribute("alt", name);
+    imgUser.setAttribute("alt", ` profil de ${name}`);
     imgUser.setAttribute("class","profile");
     //Cette fonction va nous servir à construire l'article de chaque photographe
     function getUserCardDOM() {
