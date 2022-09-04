@@ -19,8 +19,8 @@
         <button class="contact_button" id="open-modal" onclick="displayModal();" tabindex="1">Contactez-moi</button>
       </section>
       <section class="custom-sort" aria-label="Méthode de triage" tabindex="1">
-        <label for="sort-select" id="sort-select" class="sort-label" tabindex="1">Trier par</label>
-        <select name="sort" tabindex="1">
+        <label for="sort-select" class="sort-label" tabindex="1">Trier par</label>
+        <select name="sort" id="sort-select" tabindex="1">
           <option value="popularity" selected>Popularité</option>
           <option value="date">Date</option>
           <option value="title">Titre</option>
@@ -44,7 +44,6 @@
             <input type="email" name="mail" id="mail" required/>
             <label for="message">Votre message</label>
             <textarea name="message" id="message"></textarea>
-            </input>
 					</div>
           <button type="submit" class="contact_button send_button">Envoyer</button>
 				</form>
