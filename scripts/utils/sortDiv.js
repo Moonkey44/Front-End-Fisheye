@@ -43,17 +43,20 @@ newSelect.addEventListener("keyup",function(e){
         this.addEventListener("keyup",closeNewMenu);
     }
 });
+
+//Dans cette fonction, nous allons nous servir d'un vrai élément select avec ses options (caché) qui va servir d'intermédiaire
+//pour configurer l'affichage de nos options et select personnalisées (div) au click
 function selectItems(e){
     //on boucle sur notre élément select caché
     for(i=0;i <= oldSelect.length;i++){
         //Si notre option perso séléctionné correspond à une des options de l'élément select caché
         if(oldSelect.options[i].innerHTML === e.target.innerHTML){
-            //Alors on change la valeur de l'index sélectionné du select caché avec la valeur de l'index de son option sélectionner  
+            //Alors on change la valeur de l'index de l'élément select caché par l'index de son option sélectionné  
             oldSelect.selectedIndex = oldSelect.options[i].index;
-            //Ensuite on change le contenu de l'option sélectionné perso par le contenu de notre select perso
+            //Ensuite on change le contenu de l'option personnalisée sélectionner par le contenu de notre select personnalisé
             e.target.innerHTML = newSelect.innerHTML;
             e.target.setAttribute("aria-label",`${newSelect.innerHTML}`);
-            //Enfin on change le contenu de notre select perso par le contenu de l'élément select
+            //Enfin on change le contenu de notre select perso par le contenu de l'option du select caché
             newSelect.innerHTML = oldSelect.options[i].innerHTML;
             break;
         }
