@@ -44,8 +44,8 @@ newSelect.addEventListener("keyup",function(e){
     }
 });
 
-//Dans cette fonction, nous allons nous servir d'un vrai élément select avec ses options (caché) qui va servir d'intermédiaire
-//pour configurer l'affichage de nos options et select personnalisées (div) au click
+//Dans cette fonction, nous allons nous servir d'un vrai élément select avec ses options (caché) pour servir d'intermédiaire
+//et configurer l'affichage de nos options et select personnalisées (div) au click
 function selectItems(e){
     //on boucle sur notre élément select caché
     for(i=0;i <= oldSelect.length;i++){
