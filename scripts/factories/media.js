@@ -81,5 +81,5 @@
         return article;
     }
     //On retourne un objet contenant les données et fonctions sensibles d'être utilisées
-    return {likes, date,getUserFirstName, getPictureCardDOM}
+    return {likes, date, getPictureCardDOM}
  }
